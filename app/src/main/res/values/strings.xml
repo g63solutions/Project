@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">DriveThru</string>
+    <!--Menu Label-->
+    <string name="main_menu">Popular</string>
+    <!--Insert API Key Here-->
+    <string name="api">877b268995b9d5ab2cc80769612c2d16</string>
+     <string name="error_message">
+        Failed to get results. Please try again.
+    </string>
+    <string name="action_share">Share</string>
+
+    <string name="action_settings">Settings</string>
+
+
+    <!--Used by Preferences START  -->
+    <!-- - - - - - - - - - - - - - -->
+
+    <!--LIST PREFERENCE SORT sort=s value=v entry=e-->
+    <!--LIST PREFERENCE pref_general_settings.xml -->
+    <!--Array pref_sort_options-->
+    <!-- (defaultValue) Value for POPULAR option in sort preference [CHAR LIMIT=25] -->
+    <string name="pref_s_v_popular" translatable="false">popular</string>
+    <!-- Label for POPULAR option in sort preference [CHAR LIMIT=25] -->
+    <string name="pref_s_e_popular">Popular</string>
+
+    <!--Array pref_sort_values-->
+    <!-- (defaultValue) Value for TOP RATED option in sort preference [CHAR LIMIT=25] -->
+    <string name="pref_s_v_top_rated" translatable="false">top_rated</string>
+    <!-- label for TOP RATED option in sort preference [CHAR LIMIT=25] -->
+    <string name="pref_s_e_top_rated">Top Rated</string>
+
+    <!-- (key) KEY NOT TRANSLATABLE [CHAR LIMIT=25] -->
+    <string name="pref_s_key" translatable="false">sort</string>
+
+    <!-- (title) Sort label [CHAR LIMIT=25] -->
+    <string name="pref_s_title">Movie Sort</string>
+
+    <!--Used by Preferences END  -->
+    <!-- - - - - - - - - - - - - -->
+    <string name="content_authority">com.zmediaz.apps.drivethru</string>
+</resources>

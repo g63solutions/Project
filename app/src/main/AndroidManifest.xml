@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zmediaz.apps.fragtry">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+
+        <activity
+            android:name="com.zmediaz.apps.fragtry.ActivityMain"
+            android:label="@string/app_name"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ActivityDetail"
+            android:label="Details"
+            android:parentActivityName="ActivityMain" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.zmediaz.apps.fragtry.ActivityMain" />
+        </activity>
+        <!--up button in action bar-->
+        <activity
+            android:name="com.zmediaz.apps.fragtry.DetailActivity"
+            android:parentActivityName="com.zmediaz.apps.fragtry.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.zmediaz.apps.fragtry.MainActivity" />
+        </activity>
+
+        <activity
+            android:name="com.zmediaz.apps.fragtry.Settings"
+            android:label="@string/action_settings">
+
+        </activity>
+
+        <provider
+            android:name="com.zmediaz.apps.fragtry.data.MovieProvider"
+            android:authorities="com.zmediaz.apps.fragtry"
+            android:exported="false" />
+
+        <service
+            android:name="com.zmediaz.apps.fragtry.sync.MovieSyncIntentService"
+            android:exported="false" />
+        <service
+            android:name="com.zmediaz.apps.fragtry.sync.MovieFirebaseJobService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>
