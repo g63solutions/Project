@@ -8,8 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.zmediaz.apps.fragtry.data.MovieContract;
-
 /**
  * Created by Computer on 2/4/2017.
  */
@@ -27,7 +25,7 @@ public class ActivityMain
         super.onCreate(savedInstanceState);
         getSupportActionBar().setElevation(0f);
 
-        setContentView(R.layout.layout_main);
+        setContentView(R.layout.layout_activity_main);
 
         if (findViewById(R.id.detail_container) != null) {
 

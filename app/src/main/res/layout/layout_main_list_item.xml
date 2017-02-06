@@ -5,7 +5,14 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/poster_path"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+   <!-- <TextView
         android:id="@+id/tv_movie_data"
         android:textSize="14sp"
         android:padding="16dp"
@@ -13,12 +20,12 @@
         android:layout_height="wrap_content"
         tools:text="It Works Yippie" />/>
 
-    <!--This is the divider-->
+    &lt;!&ndash;This is the divider&ndash;&gt;
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#ff0000"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp" />
+        android:layout_marginRight="8dp" />-->
 
 </LinearLayout>

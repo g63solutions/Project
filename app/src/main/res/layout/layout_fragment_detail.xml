@@ -1,18 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    >
 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="8dp">
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
+        <android.support.constraint.ConstraintLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/poster_path"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+   <!-- <TextView
         android:id="@+id/poster_path"
         style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Saturday, September 24 poster_path" />
+        tools:text="Saturday, September 24 poster_path" />-->
 
     <TextView
         android:id="@+id/overview"
@@ -55,9 +68,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Saturday, September 24 vote_average" />
-
-
-</LinearLayout>
+        </android.support.constraint.ConstraintLayout>
+</ScrollView>
+</layout>
 
     <!-- public static final String COLUMN_POSTER_PATH = "poster_path";
      public static final String COLUMN_OVERVIEW = "overview";

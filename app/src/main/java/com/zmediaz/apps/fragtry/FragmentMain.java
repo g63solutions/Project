@@ -1,6 +1,5 @@
 package com.zmediaz.apps.fragtry;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,6 +9,7 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,15 +69,18 @@ implements MovieAdapter.MovieAdapterOnClickHandler,
                               ViewGroup container,
                               Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.yout_movie, container, false);
+        View rootView = inflater.inflate(R.layout.layout_fragment_main, container, false);
 
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_display);
 
         mLoadingIndicator = (ProgressBar) rootView.findViewById(R.id.pb_loading_indicator);
 
-        LinearLayoutManager layoutManager
-                = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        /*LinearLayoutManager layoutManager
+                = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);*/
+
+        StaggeredGridLayoutManager layoutManager =
+                new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
 
         mRecyclerView.setLayoutManager(layoutManager);
 

@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.yout_movie);
+        setContentView(R.layout.layout_fragment_main);
         getSupportActionBar().setElevation(0f);
         Stetho.initializeWithDefaults(this);
 //

@@ -11,21 +11,25 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.app.ShareCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.zmediaz.apps.fragtry.data.MovieContract;
 
 /**
  * Created by Computer on 2/4/2017.
  */
 
-
+/*      "backdrop_sizes": ["w300","w780","w1280","original"],
+        "logo_sizes": ["w45","w92","w154","w300","w500","original"],
+        "poster_sizes": ["w92","w154","w185","w342","w500","w780","original"],
+        "profile_sizes": ["w45","w185","h632","original"],
+        "still_sizes": ["w92","w185","w300","original"]*/
 
 
 
@@ -36,6 +40,8 @@ public class FragmentDetail extends Fragment
     static final String DETAIL_URI = "URI";
 
     private static final String MOVIE_SHARE_HASHTAG = " #DRIVETHRU";
+
+    static final String POSTER_URL = "https://image.tmdb.org/t/p/w500/";
 
     private String mMovieSummary;
 
@@ -61,7 +67,10 @@ public class FragmentDetail extends Fragment
     public static final int INDEX_BACKDROP_PATH = 5;
     public static final int INDEX_VOTE_AVERAGE = 6;
 
-    private TextView mPosterPath;
+
+    /*private TextView mPosterPath;*/
+    private ImageView mPosterPath;
+
     private TextView mOverview;
     private TextView mReleaseDate;
     private TextView mMovieId;
@@ -86,8 +95,10 @@ public class FragmentDetail extends Fragment
             mUri = arguments.getParcelable(FragmentDetail.DETAIL_URI);
         }
 
-        View rootView = inflater.inflate(R.layout.ayout_detail, container, false);
-        mPosterPath = (TextView) rootView.findViewById(R.id.poster_path);
+        View rootView = inflater.inflate(R.layout.layout_fragment_detail, container, false);
+        /*mPosterPath = (TextView) rootView.findViewById(R.id.poster_path);*/
+        mPosterPath = (ImageView) rootView.findViewById(R.id.poster_path);
+
         mOverview = (TextView) rootView.findViewById(R.id.overview);
         mReleaseDate = (TextView) rootView.findViewById(R.id.release_date);
         mMovieId = (TextView) rootView.findViewById(R.id.movie_id);
@@ -170,7 +181,11 @@ public class FragmentDetail extends Fragment
 
 
         String poster_path = data.getString(INDEX_POSTER_PATH);
-        mPosterPath.setText(poster_path);
+        /*mPosterPath.setText(poster_path);*/
+        Picasso.with(getActivity())
+                .load(POSTER_URL+poster_path)
+                .into(mPosterPath);
+
         String overview = data.getString(INDEX_OVERVIEW);
         mOverview.setText(overview);
         String release_date = data.getString(INDEX_RELEASE_DATE);

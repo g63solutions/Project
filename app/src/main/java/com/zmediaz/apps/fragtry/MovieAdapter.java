@@ -7,7 +7,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
+
+
 
 /**
  * Created by Computer on 12/29/2016.
@@ -17,6 +22,8 @@ public class MovieAdapter
         extends RecyclerView.Adapter<MovieAdapter.MovieAdapterViewHolder> {
 
     private final Context mContext;
+
+    static final String POSTER_URL = "https://image.tmdb.org/t/p/w500/";
 
     final private MovieAdapterOnClickHandler mClickHandler;
 
@@ -35,7 +42,7 @@ public class MovieAdapter
     public MovieAdapterViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater
                 .from(mContext)
-                .inflate(R.layout.layout_movie_list_item, viewGroup, false);
+                .inflate(R.layout.layout_main_list_item, viewGroup, false);
 
         view.setFocusable(true);
 
@@ -49,11 +56,16 @@ public class MovieAdapter
 
         /*MOVIE SUMMARY*/
         String poster_path = mCursor.getString(MainActivity.INDEX_MOVIE_POSTER_PATH);
-        String original_title = mCursor.getString(MainActivity.INDEX_MOVIE_ORIGINAL_TITLE);
+        Context context = movieAdapterViewHolder.mPosterPath.getContext();
+        Picasso.with(context)
+                .load(POSTER_URL+poster_path)
+                .into(movieAdapterViewHolder.mPosterPath);
+
+        /*String original_title = mCursor.getString(MainActivity.INDEX_MOVIE_ORIGINAL_TITLE);
 
         String mMovieTextView = poster_path + " - " + original_title;
 
-        movieAdapterViewHolder.mMovieTextView.setText(mMovieTextView);
+        movieAdapterViewHolder.mMovieTextView.setText(mMovieTextView);*/
 
     }
 
@@ -71,11 +83,13 @@ public class MovieAdapter
     public class MovieAdapterViewHolder
             extends RecyclerView.ViewHolder
             implements View.OnClickListener {
-        final TextView mMovieTextView;
+        /*final TextView mMovieTextView;*/
+        final ImageView mPosterPath;
 
         MovieAdapterViewHolder(View view) {
             super(view);
-            mMovieTextView = (TextView) view.findViewById(R.id.tv_movie_data);
+            mPosterPath = (ImageView) view.findViewById(R.id.poster_path);
+            /*mMovieTextView = (TextView) view.findViewById(R.id.tv_movie_data);*/
             view.setOnClickListener(this);
         }
 
