@@ -1,5 +1,6 @@
 package com.zmediaz.apps.fragtry;
 
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -7,10 +8,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,10 +82,18 @@ implements MovieAdapter.MovieAdapterOnClickHandler,
         /*LinearLayoutManager layoutManager
                 = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);*/
 
-        StaggeredGridLayoutManager layoutManager =
-                new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
-
+        /*StaggeredGridLayoutManager layoutManager =
+                new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);*/
+    if(getActivity().getResources().getBoolean(R.bool.is_landscape)){
+        GridLayoutManager layoutManager =
+                new GridLayoutManager(getActivity(), 3);
         mRecyclerView.setLayoutManager(layoutManager);
+    }else {GridLayoutManager layoutManager =
+            new GridLayoutManager(getActivity(), 2);
+        mRecyclerView.setLayoutManager(layoutManager);
+    }
+
+       // mRecyclerView.setLayoutManager(layoutManager);
 
         mRecyclerView.setHasFixedSize(true);
 
@@ -239,6 +250,8 @@ implements MovieAdapter.MovieAdapterOnClickHandler,
             PREFERENCES_HAVE_BEEN_UPDATED = false;
         }
     }
+
+
 }
 
 /*

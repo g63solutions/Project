@@ -6,11 +6,12 @@
     android:orientation="vertical">
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/poster_path"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:scaleType="fitStart"
+        android:adjustViewBounds="true"
+         />
 
    <!-- <TextView
         android:id="@+id/tv_movie_data"

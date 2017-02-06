@@ -5,9 +5,11 @@
     android:name="com.zmediaz.apps.fragtry.FragmentMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
+
     tools:layout="@layout/layout_fragment_main"
     tools:context=".ActivityMain">
 
 </fragment>
+
+    <!--android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"-->
