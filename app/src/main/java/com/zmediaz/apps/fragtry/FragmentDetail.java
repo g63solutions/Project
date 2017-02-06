@@ -68,14 +68,14 @@ public class FragmentDetail extends Fragment
     public static final int INDEX_VOTE_AVERAGE = 6;
 
 
-    /*private TextView mPosterPath;*/
+    private ImageView mBackdropPath;
     private ImageView mPosterPath;
 
     private TextView mOverview;
     private TextView mReleaseDate;
     private TextView mMovieId;
     private TextView mOriginalTitle;
-    private TextView mBackdropPath;
+
     private TextView mVoteAverage;
 
     private static final int ID_DETAIL_LOADER = 2924;
@@ -97,13 +97,14 @@ public class FragmentDetail extends Fragment
 
         View rootView = inflater.inflate(R.layout.layout_fragment_detail, container, false);
         /*mPosterPath = (TextView) rootView.findViewById(R.id.poster_path);*/
+        mBackdropPath = (ImageView) rootView.findViewById(R.id.backdrop_path);
         mPosterPath = (ImageView) rootView.findViewById(R.id.poster_path);
 
         mOverview = (TextView) rootView.findViewById(R.id.overview);
         mReleaseDate = (TextView) rootView.findViewById(R.id.release_date);
         mMovieId = (TextView) rootView.findViewById(R.id.movie_id);
         mOriginalTitle = (TextView) rootView.findViewById(R.id.original_title);
-        mBackdropPath = (TextView) rootView.findViewById(R.id.backdrop_path);
+
         mVoteAverage = (TextView) rootView.findViewById(R.id.vote_average);
 
 
@@ -179,6 +180,11 @@ public class FragmentDetail extends Fragment
             return;
         }
 
+        String backdrop_path = data.getString(INDEX_BACKDROP_PATH);
+        /*mBackdropPath.setText(backdrop_path);*/
+        Picasso.with(getActivity())
+                .load(POSTER_URL+backdrop_path)
+                .into(mBackdropPath);
 
         String poster_path = data.getString(INDEX_POSTER_PATH);
         /*mPosterPath.setText(poster_path);*/
@@ -194,8 +200,7 @@ public class FragmentDetail extends Fragment
         mMovieId.setText(movie_id);
         String original_title = data.getString(INDEX_ORIGINAL_TITLE);
         mOriginalTitle.setText(original_title);
-        String backdrop_path = data.getString(INDEX_BACKDROP_PATH);
-        mBackdropPath.setText(backdrop_path);
+
         String vote_average = data.getString(INDEX_VOTE_AVERAGE);
         mVoteAverage.setText(vote_average);
 
