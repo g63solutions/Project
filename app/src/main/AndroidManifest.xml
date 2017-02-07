@@ -15,6 +15,7 @@
         <activity
             android:name="com.zmediaz.apps.fragtry.ActivityMain"
             android:label="@string/app_name"
+
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +25,9 @@
         <activity
             android:name=".ActivityDetail"
             android:label="Details"
-            android:parentActivityName="ActivityMain" >
+            android:parentActivityName="ActivityMain"
+            android:theme="@style/AppTheme.Collapsing"
+            >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.zmediaz.apps.fragtry.ActivityMain" />
@@ -62,3 +65,5 @@
     </application>
 
 </manifest>
+
+    <!--android:theme="@style/AppTheme.Collapsing"-->

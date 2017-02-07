@@ -21,6 +21,7 @@ android {
 }
 
 dependencies {
+    compile 'com.android.support:design:22.2.1'
     compile 'com.squareup.picasso:picasso:2.3.3'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
     compile 'com.facebook.stetho:stetho:1.4.2'

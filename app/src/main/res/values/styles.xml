@@ -10,8 +10,23 @@
         AppTheme and set to @style/PreferenceThemeOverlay
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
     </style>
+    <style name="AppTheme.Collapsing">
+
+        <item name="windowActionBar">false</item>
+
+        <item name="windowNoTitle">true</item>
+
+    </style>
+
+<style name="AppTheme.White">
+
+<item name="android:textColor">@android:color/white</item>
+
+</style>
+
+
 
 </resources>
 
 
-<!-- Customize your theme here. -->
+<!-- Customize your theme here.    @android:color/black  -->

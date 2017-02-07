@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -19,6 +20,7 @@ public class ActivityMain
 
     private static final String FRAGMENTDETAIL_TAG = "FDTAG";
     private boolean mTwoPane;
+    /*Toolbar cToolBar;*/
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,6 +28,8 @@ public class ActivityMain
         getSupportActionBar().setElevation(0f);
 
         setContentView(R.layout.layout_activity_main);
+
+
 
         if (findViewById(R.id.detail_container) != null) {
 

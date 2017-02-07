@@ -6,17 +6,22 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.app.ShareCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 
 import com.squareup.picasso.Picasso;
 import com.zmediaz.apps.fragtry.data.MovieContract;
@@ -36,6 +41,8 @@ import com.zmediaz.apps.fragtry.data.MovieContract;
 
 public class FragmentDetail extends Fragment
         implements LoaderManager.LoaderCallbacks<Cursor> {
+
+
 
     static final String DETAIL_URI = "URI";
 
@@ -89,15 +96,17 @@ public class FragmentDetail extends Fragment
                              @Nullable Bundle savedInstanceState) {
 
 
+setHasOptionsMenu(true);
 
         Bundle arguments = getArguments();
         if (arguments != null) {
             mUri = arguments.getParcelable(FragmentDetail.DETAIL_URI);
         }
 
+
         View rootView = inflater.inflate(R.layout.layout_fragment_detail, container, false);
         /*mPosterPath = (TextView) rootView.findViewById(R.id.poster_path);*/
-        mBackdropPath = (ImageView) rootView.findViewById(R.id.backdrop_path);
+        mBackdropPath = (ImageView) getActivity().findViewById(R.id.backdrop_path);
         mPosterPath = (ImageView) rootView.findViewById(R.id.poster_path);
 
         mOverview = (TextView) rootView.findViewById(R.id.overview);
@@ -115,6 +124,7 @@ public class FragmentDetail extends Fragment
 
         return rootView;
     }
+
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -186,6 +196,7 @@ public class FragmentDetail extends Fragment
                 .load(POSTER_URL+backdrop_path)
                 .into(mBackdropPath);
 
+
         String poster_path = data.getString(INDEX_POSTER_PATH);
         /*mPosterPath.setText(poster_path);*/
         Picasso.with(getActivity())
@@ -200,6 +211,10 @@ public class FragmentDetail extends Fragment
         mMovieId.setText(movie_id);
         String original_title = data.getString(INDEX_ORIGINAL_TITLE);
         mOriginalTitle.setText(original_title);
+
+        CollapsingToolbarLayout collapsingToolbar =
+                (CollapsingToolbarLayout) getActivity().findViewById(R.id.collapsing_toolbar);
+        collapsingToolbar.setTitle(original_title);
 
         String vote_average = data.getString(INDEX_VOTE_AVERAGE);
         mVoteAverage.setText(vote_average);

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
 
-    android:id="@+id/detail_container"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ActivityDetail"/>-->
+android:id="@+id/detail_container"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".ActivityDetail"/>-->
 
-   <!-- Make sure you add the:
+<!-- Make sure you add the:
 
-    android:fitsSystemWindows="true"
-    Attribute to both AppBarLayout and CollapsingToolbarLayout-->
+ android:fitsSystemWindows="true"
+ Attribute to both AppBarLayout and CollapsingToolbarLayout-->
 
- <!--   and this attribute to the Toolbar:
+<!--   and this attribute to the Toolbar:
 
-    app:layout_collapseMode="pin"-->
+   app:layout_collapseMode="pin"-->
 
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -28,7 +28,7 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="200dp"
         android:fitsSystemWindows="true"
         >
 
@@ -54,7 +54,8 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin" >
+                app:layout_collapseMode="pin"
+                >
 
 
             </android.support.v7.widget.Toolbar>
