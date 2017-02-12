@@ -19,7 +19,7 @@ import com.squareup.picasso.Picasso;
 
 public class MovieAdapter
         extends RecyclerView.Adapter<MovieAdapter.MovieAdapterViewHolder> {
-
+MovieAdapter movieAdapter;
     private final Context mContext;
 
     private static final int FIRST_MOVIE = 0;
@@ -102,16 +102,34 @@ public class MovieAdapter
         @Override
         public void onClick(View view) {
 
+            movieID(view);
+
+
+            /*String movie = mMovieTextView.getText().toString();
+            mClickHandler.onClick(movie);*/
+        }
+
+        /*public void movieID2(Context context){
+            int adapterPosition = getAdapterPosition();
+            mCursor.moveToPosition(6);
+            *//*long movieID = mCursor.getLong(FragmentMain.INDEX__ID);*//*
+            long movieID = mCursor.getLong(FragmentMain.INDEX_MOVIE_MOVIE_ID);
+           *//* long movieID = mCursor.getLong(MainActivity.INDEX_MOVIE_ID);*//*
+            mClickHandler.onClick(movieID);
+        }*/
+
+
+
+        public void movieID(View view){
             int adapterPosition = getAdapterPosition();
             mCursor.moveToPosition(adapterPosition);
             /*long movieID = mCursor.getLong(FragmentMain.INDEX__ID);*/
             long movieID = mCursor.getLong(FragmentMain.INDEX_MOVIE_MOVIE_ID);
            /* long movieID = mCursor.getLong(MainActivity.INDEX_MOVIE_ID);*/
             mClickHandler.onClick(movieID);
-
-            /*String movie = mMovieTextView.getText().toString();
-            mClickHandler.onClick(movie);*/
         }
+
+
 
 
     }

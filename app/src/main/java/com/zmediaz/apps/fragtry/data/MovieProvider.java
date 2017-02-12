@@ -15,6 +15,8 @@ import android.support.annotation.Nullable;
 
 public class MovieProvider extends ContentProvider {
 
+    public static final int POSITION = 6;
+
     public static final int CODE_MOVIE = 100;
     /*public static final int CODE_MOVIE_WITH_COLUMN_ID = 101;*/
     public static final int CODE_MOVIE_WITH_MOVIE_ID = 102;
@@ -84,7 +86,7 @@ public class MovieProvider extends ContentProvider {
 
         switch (sUriMatcher.match(uri)) {
 
-            /*case CODE_MOVIE_WITH_COLUMN_ID: {
+           /* case CODE_MOVIE_WITH_COLUMN_ID: {
 
                 String movieTitle = uri.getLastPathSegment();
 
@@ -104,7 +106,6 @@ public class MovieProvider extends ContentProvider {
             }*/
 
             case CODE_MOVIE_WITH_MOVIE_ID: {
-
                 String movieTitle = uri.getLastPathSegment();
 
                 String[] selectionArguments = new String[]{movieTitle};

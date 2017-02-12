@@ -1,5 +1,6 @@
 package com.zmediaz.apps.fragtry;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -12,6 +13,7 @@ import android.view.MenuItem;
 import com.zmediaz.apps.fragtry.MovieAdapter;
 
 import com.zmediaz.apps.fragtry.data.MovieContract;
+import com.zmediaz.apps.fragtry.utilities.NetworkUtils;
 
 /**
  * Created by Computer on 2/4/2017.
@@ -26,7 +28,7 @@ public class ActivityMain
     private boolean mTwoPane;
     /*Toolbar cToolBar;*/
 
-
+    MovieAdapter movieAdapter ;
 
 
 
@@ -42,7 +44,7 @@ public class ActivityMain
         if (findViewById(R.id.detail_container) != null) {
 
             mTwoPane = true;
-
+            /*defaultMovie();*/
 
 
             if (savedInstanceState == null) {
@@ -88,6 +90,8 @@ public class ActivityMain
         return super.onOptionsItemSelected(item);
     }
 
+
+
     @Override
     public void onItemSelected(Uri columnId) {
         if (mTwoPane) {
@@ -113,4 +117,19 @@ public class ActivityMain
             startActivity(intent);
         }
     }
+
+
+
+/*  Cursor cursor;
+
+    public void defaultMovie(){
+
+        cursor.moveToPosition(1);
+
+        long movieID = cursor.getLong(FragmentMain.INDEX_MOVIE_MOVIE_ID);
+
+        Uri columnID = MovieContract.MovieEntry.buildMovieUriWithID(movieID);
+
+        onItemSelected(columnID);
+    }*/
 }

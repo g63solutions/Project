@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.1"
+    buildToolsVersion "25"
     defaultConfig {
         applicationId "com.zmediaz.apps.fragtry"
         minSdkVersion 11
@@ -21,11 +21,10 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:design:22.2.1'
     compile 'com.squareup.picasso:picasso:2.3.3'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta5'
     compile 'com.facebook.stetho:stetho:1.4.2'
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.firebase:firebase-jobdispatcher:0.5.0'
     compile 'com.android.support:recyclerview-v7:25.0.1'
     compile 'com.android.support:preference-v7:25.0.1'
@@ -35,4 +34,5 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.1.0'
     testCompile 'junit:junit:4.12'
+    compile 'com.android.support:design:25.1.1'
 }
