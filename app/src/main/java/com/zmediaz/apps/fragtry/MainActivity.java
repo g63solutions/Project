@@ -33,14 +33,17 @@ public class MainActivity extends AppCompatActivity
     public static final String[] MAIN_MOVIE_SCREEN = {
             MovieContract.MovieEntry.COLUMN_POSTER_PATH,
             MovieContract.MovieEntry.COLUMN_ORIGINAL_TITLE,
-            MovieContract.MovieEntry._ID
+            MovieContract.MovieEntry._ID,
+            MovieContract.MovieEntry.COLUMN_MOVIE_ID
     };
 
     public static final int INDEX_MOVIE_POSTER_PATH = 0;
     public static final int INDEX_MOVIE_ORIGINAL_TITLE = 1;
-    public static final int INDEX_MOVIE_ID = 2;
+    public static final int INDEX__ID = 2;
+    public static final int INDEX_MOVIE_ID = 3;
 
     private static final int MOVIE_LOADER_INT = 7;
+
 
     private MovieAdapter mMovieAdapter;
     private RecyclerView mRecyclerView;
@@ -149,6 +152,8 @@ public class MainActivity extends AppCompatActivity
         startActivity(movieDetailIntent);
 
     }
+
+
 
     private void showMovieDataView() {
         /* First, hide the loading indicator */

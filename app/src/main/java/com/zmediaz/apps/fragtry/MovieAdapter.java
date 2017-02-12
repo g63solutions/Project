@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
@@ -22,6 +21,8 @@ public class MovieAdapter
         extends RecyclerView.Adapter<MovieAdapter.MovieAdapterViewHolder> {
 
     private final Context mContext;
+
+    private static final int FIRST_MOVIE = 0;
 
     static final String POSTER_URL = "https://image.tmdb.org/t/p/w500/";
 
@@ -55,7 +56,8 @@ public class MovieAdapter
         mCursor.moveToPosition(position);
 
         /*MOVIE SUMMARY*/
-        String poster_path = mCursor.getString(MainActivity.INDEX_MOVIE_POSTER_PATH);
+        /*String poster_path = mCursor.getString(MainActivity.INDEX_MOVIE_POSTER_PATH);*/
+        String poster_path = mCursor.getString(FragmentMain.INDEX_MOVIE_POSTER_PATH);
         Context context = movieAdapterViewHolder.mPosterPath.getContext();
         Picasso.with(context)
                 .load(POSTER_URL+poster_path)
@@ -94,17 +96,24 @@ public class MovieAdapter
         }
 
 
+
+
+
         @Override
         public void onClick(View view) {
 
             int adapterPosition = getAdapterPosition();
             mCursor.moveToPosition(adapterPosition);
-            long columnId = mCursor.getLong(MainActivity.INDEX_MOVIE_ID);
-            mClickHandler.onClick(columnId);
+            /*long movieID = mCursor.getLong(FragmentMain.INDEX__ID);*/
+            long movieID = mCursor.getLong(FragmentMain.INDEX_MOVIE_MOVIE_ID);
+           /* long movieID = mCursor.getLong(MainActivity.INDEX_MOVIE_ID);*/
+            mClickHandler.onClick(movieID);
 
             /*String movie = mMovieTextView.getText().toString();
             mClickHandler.onClick(movie);*/
         }
+
+
     }
 }
 

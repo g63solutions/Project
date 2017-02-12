@@ -1,6 +1,7 @@
 package com.zmediaz.apps.fragtry;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,6 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import com.zmediaz.apps.fragtry.MovieAdapter;
+
+import com.zmediaz.apps.fragtry.data.MovieContract;
 
 /**
  * Created by Computer on 2/4/2017.
@@ -22,6 +26,10 @@ public class ActivityMain
     private boolean mTwoPane;
     /*Toolbar cToolBar;*/
 
+
+
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,13 +43,16 @@ public class ActivityMain
 
             mTwoPane = true;
 
+
+
             if (savedInstanceState == null) {
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.detail_container, new FragmentDetail(), FRAGMENTDETAIL_TAG)
                         .commit();
 
-            }
+                /*defaultDetail();*/
+                         }
         } else {
             mTwoPane = false;
         }
