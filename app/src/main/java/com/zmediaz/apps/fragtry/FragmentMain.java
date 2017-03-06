@@ -1,5 +1,6 @@
 package com.zmediaz.apps.fragtry;
 
+import android.app.Activity;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.Uri;
@@ -18,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.facebook.stetho.Stetho;
 import com.zmediaz.apps.fragtry.data.MovieContract;
@@ -34,8 +36,10 @@ implements MovieAdapter.MovieAdapterOnClickHandler,
         LoaderManager.LoaderCallbacks<Cursor> {
 
     public interface Callback {
-        public void onItemSelected(Uri columnId);
+         void onItemSelected(Uri columnId);
     }
+
+
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -44,13 +48,15 @@ implements MovieAdapter.MovieAdapterOnClickHandler,
             MovieContract.MovieEntry.COLUMN_ORIGINAL_TITLE,
             MovieContract.MovieEntry._ID,
 
-            MovieContract.MovieEntry.COLUMN_MOVIE_ID
+            MovieContract.MovieEntry.COLUMN_MOVIE_ID,
+            MovieContract.MovieEntry.COLUMN_VOTE_AVERAGE
     };
 
     public static final int INDEX_MOVIE_POSTER_PATH = 0;
     public static final int INDEX_MOVIE_ORIGINAL_TITLE = 1;
     public static final int INDEX_MOVIE_ID = 2;
     public static final int INDEX_MOVIE_MOVIE_ID = 3;
+    public static final int INDEX_MOVIE_VOTE_AVERAGE =4;
 
     private static final int MOVIE_LOADER_INT = 7;
 
@@ -108,15 +114,19 @@ implements MovieAdapter.MovieAdapterOnClickHandler,
 
         getActivity().getSupportLoaderManager().initLoader(MOVIE_LOADER_INT, null, this);
 
-        MovieSyncUtils.initialize(getActivity());
+        /*MovieSyncUtils.initialize(getActivity());*/
 
         return rootView;
+
+
     }
 
 
 
     @Override
     public Loader<Cursor> onCreateLoader(int loaderId, final Bundle args) {
+
+
         switch (loaderId) {
 
             case MOVIE_LOADER_INT:

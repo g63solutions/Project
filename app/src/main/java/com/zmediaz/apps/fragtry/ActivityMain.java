@@ -5,14 +5,23 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+
+import com.facebook.stetho.Stetho;
 import com.zmediaz.apps.fragtry.MovieAdapter;
 
 import com.zmediaz.apps.fragtry.data.MovieContract;
+import com.zmediaz.apps.fragtry.sync.MovieSyncUtils;
 import com.zmediaz.apps.fragtry.utilities.NetworkUtils;
 
 /**
@@ -22,7 +31,9 @@ import com.zmediaz.apps.fragtry.utilities.NetworkUtils;
 
 public class ActivityMain
         extends AppCompatActivity
-        implements FragmentMain.Callback {
+        implements FragmentMain.Callback{
+
+
 
     private static final String FRAGMENTDETAIL_TAG = "FDTAG";
     private boolean mTwoPane;
@@ -36,15 +47,17 @@ public class ActivityMain
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setElevation(0f);
+        Stetho.initializeWithDefaults(this);
+
 
         setContentView(R.layout.layout_activity_main);
 
-
+        MovieSyncUtils.initialize(this);
 
         if (findViewById(R.id.detail_container) != null) {
 
             mTwoPane = true;
-            /*defaultMovie();*/
+
 
 
             if (savedInstanceState == null) {
@@ -59,11 +72,13 @@ public class ActivityMain
             mTwoPane = false;
         }
 
-        /*//Set Some Special Layout
-        FragmentMain fragmentMain = ((FragmentMain) getSupportFragmentManager()
+        //Set Some Special Layout
+        /*FragmentMain fragmentMain = ((FragmentMain) getSupportFragmentManager()
                 .findFragmentById(R.id.fragment_main));
 
         fragmentMain.setSomeLayout(!mTwoPane);*/
+
+
     }
 
     @Override
@@ -90,7 +105,10 @@ public class ActivityMain
         return super.onOptionsItemSelected(item);
     }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 
     @Override
     public void onItemSelected(Uri columnId) {
@@ -106,6 +124,22 @@ public class ActivityMain
                     .replace(R.id.detail_container, fragment, FRAGMENTDETAIL_TAG)
                     .commit();
 
+            //Transition in two pane
+            /*ImageView tposter_path = (ImageView) findViewById(R.id.poster_path);
+            Pair<View, String> imagePair = Pair.create((View)tposter_path, "tposter_path");
+            ActivityOptionsCompat options =
+                    ActivityOptionsCompat
+                            .makeSceneTransitionAnimation
+                                    (ActivityMain.this,imagePair);
+            Bundle args = new Bundle();
+            args = options.toBundle();
+            args.putParcelable(FragmentDetail.DETAIL_URI, columnId);
+            FragmentDetail fragment = new FragmentDetail();
+            fragment.setArguments(args);
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.detail_container, fragment, FRAGMENTDETAIL_TAG)
+                    .commit();*/
+
         }else{
             /*Intent movieDetailIntent = new Intent(this, DetailActivity.class);
             Uri uriForTitleClicked = MovieContract.MovieEntry.buildMovieUriWithID(columnId);
@@ -114,9 +148,22 @@ public class ActivityMain
 
             Intent intent = new Intent(this, ActivityDetail.class)
                     .setData(columnId);
-            startActivity(intent);
+
+
+            ImageView tposter_path = (ImageView) findViewById(R.id.poster_path);
+            Pair<View, String> imagePair = Pair.create((View)tposter_path, "tposter_path");
+            ActivityOptionsCompat options =
+                    ActivityOptionsCompat
+                            .makeSceneTransitionAnimation
+                                    (ActivityMain.this,imagePair);
+            ActivityCompat.startActivity(this, intent, options.toBundle());
+
+            /*Intent intent = new Intent(this, ActivityDetail.class)
+                    .setData(columnId);
+            startActivity(intent);*/
         }
     }
+
 
 
 

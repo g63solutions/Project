@@ -6,23 +6,26 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.app.ShareCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.support.v7.widget.Toolbar;
+import android.support.v4.widget.NestedScrollView;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
+import com.github.florent37.picassopalette.PicassoPalette;
 import com.squareup.picasso.Picasso;
 import com.zmediaz.apps.fragtry.data.MovieContract;
 
@@ -36,13 +39,8 @@ import com.zmediaz.apps.fragtry.data.MovieContract;
         "profile_sizes": ["w45","w185","h632","original"],
         "still_sizes": ["w92","w185","w300","original"]*/
 
-
-
-
 public class FragmentDetail extends Fragment
         implements LoaderManager.LoaderCallbacks<Cursor> {
-
-
 
     static final String DETAIL_URI = "URI";
 
@@ -83,10 +81,14 @@ public class FragmentDetail extends Fragment
     private TextView mMovieId;
     private TextView mOriginalTitle;
 
+
     private TextView mVoteAverage;
 
-    private static final int ID_DETAIL_LOADER = 2924;
 
+
+    private NestedScrollView mNest;
+
+    private static final int ID_DETAIL_LOADER = 2924;
 
 
     @Nullable
@@ -96,7 +98,7 @@ public class FragmentDetail extends Fragment
                              @Nullable Bundle savedInstanceState) {
 
 
-setHasOptionsMenu(true);
+        setHasOptionsMenu(true);
 
         Bundle arguments = getArguments();
         if (arguments != null) {
@@ -115,6 +117,7 @@ setHasOptionsMenu(true);
         mOriginalTitle = (TextView) rootView.findViewById(R.id.original_title);
 
         mVoteAverage = (TextView) rootView.findViewById(R.id.vote_average);
+        mNest = (NestedScrollView) getActivity().findViewById(R.id.nested_scroll_view);
 
 
 
@@ -153,7 +156,6 @@ setHasOptionsMenu(true);
             startActivity(startSettingsActivity);
             return true;
 
-
         }
 
         return super.onOptionsItemSelected(item);
@@ -162,16 +164,16 @@ setHasOptionsMenu(true);
     @Override
     public Loader<Cursor> onCreateLoader(int loaderId, Bundle loaderArgs) {
 
-       if(null != mUri) {
+        if (null != mUri) {
 
 
-           return new CursorLoader(getActivity(),
-                   mUri,
-                   MOVIE_DETAIL_PROJECTION,
-                   null,
-                   null,
-                   null);
-       }
+            return new CursorLoader(getActivity(),
+                    mUri,
+                    MOVIE_DETAIL_PROJECTION,
+                    null,
+                    null,
+                    null);
+        }
 
         return null;
     }
@@ -192,15 +194,30 @@ setHasOptionsMenu(true);
 
         String backdrop_path = data.getString(INDEX_BACKDROP_PATH);
         /*mBackdropPath.setText(backdrop_path);*/
-        Picasso.with(getActivity())
+        /*Picasso.with(getActivity())
                 .load(POSTER_URL+backdrop_path)
-                .into(mBackdropPath);
+                .into(mBackdropPath);*/
+
+        Picasso.with(getActivity()).load(POSTER_URL + backdrop_path).into(mBackdropPath,
+                PicassoPalette.with(POSTER_URL + backdrop_path, mBackdropPath)
+                        .use(PicassoPalette.Profile.MUTED_LIGHT)
+                        .intoBackground(mNest)
+                        .use(PicassoPalette.Profile.MUTED_LIGHT)
+                        .intoTextColor(mOverview, PicassoPalette.Swatch.BODY_TEXT_COLOR)
+                        .use(PicassoPalette.Profile.VIBRANT_LIGHT)
+                        .intoTextColor(mOriginalTitle, PicassoPalette.Swatch.TITLE_TEXT_COLOR)
+                        /*.intoTextColor(textView)*/
+
+                        /*.use(PicassoPalette.Profile.VIBRANT)
+                        .intoBackground(titleView, PicassoPalette.Swatch.RGB)
+                        .intoTextColor(titleView, PicassoPalette.Swatch.BODY_TEXT_COLOR)*/
+        );
 
 
         String poster_path = data.getString(INDEX_POSTER_PATH);
         /*mPosterPath.setText(poster_path);*/
         Picasso.with(getActivity())
-                .load(POSTER_URL+poster_path)
+                .load(POSTER_URL + poster_path)
                 .into(mPosterPath);
 
         String overview = data.getString(INDEX_OVERVIEW);
@@ -209,6 +226,7 @@ setHasOptionsMenu(true);
         mReleaseDate.setText(release_date);
         String movie_id = data.getString(INDEX_MOVIE_ID);
         mMovieId.setText(movie_id);
+
         String original_title = data.getString(INDEX_ORIGINAL_TITLE);
         mOriginalTitle.setText(original_title);
 
@@ -229,5 +247,6 @@ setHasOptionsMenu(true);
 }
 
 /*
-35 35 35*/
+35 3
+5 35*/
 

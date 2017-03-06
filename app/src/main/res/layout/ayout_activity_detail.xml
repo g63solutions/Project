@@ -1,25 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-
-android:id="@+id/detail_container"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context=".ActivityDetail"/>-->
-
-<!-- Make sure you add the:
-
- android:fitsSystemWindows="true"
- Attribute to both AppBarLayout and CollapsingToolbarLayout-->
-
-<!--   and this attribute to the Toolbar:
-
-   app:layout_collapseMode="pin"-->
 
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coorlay"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
@@ -28,9 +13,8 @@ tools:context=".ActivityDetail"/>-->
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:fitsSystemWindows="true"
-        >
+        android:layout_height="400dp"
+        android:fitsSystemWindows="true">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:fitsSystemWindows="true"
@@ -53,7 +37,7 @@ tools:context=".ActivityDetail"/>-->
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="50dp"
                 app:layout_collapseMode="pin" >
 
 
@@ -64,11 +48,19 @@ tools:context=".ActivityDetail"/>-->
 
     </android.support.design.widget.AppBarLayout>
     <android.support.v4.widget.NestedScrollView
-        android:id="@+id/detail_container"
+        android:id="@+id/nested_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <FrameLayout
+            android:id="@+id/detail_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            tools:layout="@layout/layout_fragment_detail"
+            tools:context ="com.zmediaz.apps.fragtry.FragmentDetail"/>
 
     </android.support.v4.widget.NestedScrollView>
 

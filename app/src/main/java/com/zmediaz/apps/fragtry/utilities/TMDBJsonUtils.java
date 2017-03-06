@@ -96,18 +96,6 @@ public final class TMDBJsonUtils {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     public static String[] getSimpleMovieStringsFromJson(Context context, String movieJsonStr)
             throws JSONException {
 

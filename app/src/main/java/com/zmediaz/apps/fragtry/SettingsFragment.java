@@ -42,6 +42,8 @@ public class SettingsFragment extends PreferenceFragmentCompat
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         Activity activity = getActivity();
         MovieSyncUtils.startImmediateSync(activity);
+
+
         {
             Preference preference = findPreference(key);
             if (null != preference) {

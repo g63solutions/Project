@@ -1,128 +1,76 @@
-
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    >
+    android:id="@+id/conlay"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FragmentDetail">
 
-    <ScrollView
-        android:id="@+id/scroll"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <android.support.constraint.ConstraintLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-           <!-- <ImageView
-                android:id="@+id/backdrop_path"
-
-                android:layout_width="0dp"
-                android:layout_height="120dp"
-
-                app:layout_constraintTop_toTopOf="parent"
-
-                app:layout_constraintLeft_toRightOf="parent"
-                 />-->
-
+    <!-- android:elevation="10dp"
+            android:outlineProvider="bounds"-->
     <ImageView
-        android:layout_width="200dp"
-        android:layout_height="120dp"
         android:id="@+id/poster_path"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        tools:layout_editor_absoluteX="84dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@+id/overview" />
-
-   <!-- <TextView
-        android:id="@+id/poster_path"
-        style="@style/TextAppearance.AppCompat.Large"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Saturday, September 24 poster_path" />-->
-
-    <TextView
-        android:id="@+id/overview"
-        style="@style/TextAppearance.AppCompat.Large"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Saturday, September 24 overview"
-        tools:layout_editor_absoluteX="22dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintTop_toBottomOf="@+id/overview2" />
-            <TextView
-                android:id="@+id/overview1"
-                style="@style/TextAppearance.AppCompat.Large"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="Saturday, September 24 overview"
-                tools:layout_editor_absoluteX="38dp"
-
-                android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@+id/vote_average" />
-            <TextView
-            android:id="@+id/overview2"
-            style="@style/TextAppearance.AppCompat.Large"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Saturday, September 24 overview"
-                tools:layout_editor_absoluteX="22dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/release_date"
-        style="@style/TextAppearance.AppCompat.Large"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Saturday, September 24 release_date"
-        tools:layout_editor_absoluteX="3dp"
-
-        android:layout_marginTop="40dp"
-        app:layout_constraintTop_toBottomOf="@+id/poster_path" />
-
-    <TextView
-        android:id="@+id/movie_id"
-        style="@style/TextAppearance.AppCompat.Large"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Saturday, September 24 movie_id"
-        tools:layout_editor_absoluteX="45dp"
-
-        android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@+id/original_title" />
+        android:layout_width="0dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="8dp"
+        android:transitionName="tposter_path"
+        app:layout_constraintTop_toBottomOf="@+id/original_title"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.21" />
 
     <TextView
         android:id="@+id/original_title"
-        style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Saturday, September 24 original_title"
-        tools:layout_editor_absoluteX="29dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintTop_toBottomOf="@+id/overview1" />
-
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:textAppearance="@android:style/TextAppearance.Large"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
         android:id="@+id/vote_average"
-        style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Saturday, September 24 vote_average"
-        tools:layout_editor_absoluteX="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/original_title" />
 
-        android:layout_marginTop="56dp"
-        app:layout_constraintTop_toBottomOf="@+id/release_date" />
-        </android.support.constraint.ConstraintLayout>
-</ScrollView>
-</layout>
+    <TextView
+        android:id="@+id/release_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vote_average" />
 
-    <!-- public static final String COLUMN_POSTER_PATH = "poster_path";
-     public static final String COLUMN_OVERVIEW = "overview";
-     public static final String COLUMN_RELEASE_DATE = "release_date";
-     public static final String COLUMN_MOVIE_ID = "movie_id";
-     public static final String COLUMN_ORIGINAL_TITLE = "original_title";
-     public static final String COLUMN_BACKDROP_PATH = "backdrop_path";
-     public static final String COLUMN_VOTE_AVERAGE = "vote_average";-->
+    <TextView
+        android:id="@+id/overview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="16dp"
+        android:elevation="5dp"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/poster_path"
+        app:layout_constraintLeft_toLeftOf="@+id/poster_path" />
+
+    <TextView
+        android:id="@+id/movie_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/overview" />
+
+</android.support.constraint.ConstraintLayout>

@@ -12,14 +12,14 @@ public class Settings extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setContentView(R.layout.layout_settings);
+        this.setContentView(R.layout.ayout_settings);
 
 
        /*This is needed since in the manifest there is no parent.  A parent activity
        * would also provide back support and the back arrow but it would only go to
        * the one parent screen.  This is not good for settings menus since they are
        * on multiple activities and you would keep navigating back to sam screen*/
-        this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+       /* this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
 
     }
 
