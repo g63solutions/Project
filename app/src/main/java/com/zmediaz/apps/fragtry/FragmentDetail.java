@@ -19,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -40,7 +41,11 @@ import com.zmediaz.apps.fragtry.data.MovieContract;
         "still_sizes": ["w92","w185","w300","original"]*/
 
 public class FragmentDetail extends Fragment
-        implements LoaderManager.LoaderCallbacks<Cursor> {
+        implements LoaderManager.LoaderCallbacks<Cursor>, View.OnClickListener {
+
+    public interface buttonClickedListener {
+        public void onButtonClicked();
+    };
 
     static final String DETAIL_URI = "URI";
 
@@ -80,6 +85,7 @@ public class FragmentDetail extends Fragment
     private TextView mReleaseDate;
     private TextView mMovieId;
     private TextView mOriginalTitle;
+    private Button mFavorite;
 
 
     private TextView mVoteAverage;
@@ -115,7 +121,7 @@ public class FragmentDetail extends Fragment
         mReleaseDate = (TextView) rootView.findViewById(R.id.release_date);
         mMovieId = (TextView) rootView.findViewById(R.id.movie_id);
         mOriginalTitle = (TextView) rootView.findViewById(R.id.original_title);
-
+        mFavorite = (Button) rootView.findViewById(R.id.favorite_button);
         mVoteAverage = (TextView) rootView.findViewById(R.id.vote_average);
         mNest = (NestedScrollView) getActivity().findViewById(R.id.nested_scroll_view);
 
@@ -244,6 +250,25 @@ public class FragmentDetail extends Fragment
     public void onLoaderReset(Loader<Cursor> loader) {
 
     }
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.favorite_button:
+                buttonClick(v);
+                break;
+            /*case R.id.another_view:
+                someMethod(param);
+                break;*/
+        }
+    }
+
+    public void buttonClick(View button){
+        ((buttonClickedListener) getActivity()).onButtonClicked();
+    }
+
+
 }
 
 /*
