@@ -9,6 +9,16 @@
 
 # Add any project specific keep options here:
 
+-dontwarn android.support.**
+
+-keep class !android.support.v7.internal.view.menu.**,android.support.** {*;}
+-ignorewarnings
+-renamesourcefileattribute SourceFile
+-keepattributes SourceFile,LineNumberTable
+
+-keep public class * extends android.support.v4.** {*;}
+-keep public class * extends android.app.Fragment
+
 # If your project uses WebView with JS, uncomment the following
 # and specify the fully qualified class name to the JavaScript interface
 # class:

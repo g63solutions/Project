@@ -24,6 +24,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.github.florent37.picassopalette.PicassoPalette;
@@ -90,6 +91,8 @@ public class FragmentDetail extends Fragment
 
     private TextView mVoteAverage;
 
+    private View rootView;
+
 
 
     private NestedScrollView mNest;
@@ -112,7 +115,7 @@ public class FragmentDetail extends Fragment
         }
 
 
-        View rootView = inflater.inflate(R.layout.layout_fragment_detail, container, false);
+        rootView = inflater.inflate(R.layout.layout_fragment_detail, container, false);
         /*mPosterPath = (TextView) rootView.findViewById(R.id.poster_path);*/
         mBackdropPath = (ImageView) getActivity().findViewById(R.id.backdrop_path);
         mPosterPath = (ImageView) rootView.findViewById(R.id.poster_path);
@@ -120,8 +123,12 @@ public class FragmentDetail extends Fragment
         mOverview = (TextView) rootView.findViewById(R.id.overview);
         mReleaseDate = (TextView) rootView.findViewById(R.id.release_date);
         mMovieId = (TextView) rootView.findViewById(R.id.movie_id);
+        rootView.setTag(R.id.poster_path, mMovieId);
         mOriginalTitle = (TextView) rootView.findViewById(R.id.original_title);
+
         mFavorite = (Button) rootView.findViewById(R.id.favorite_button);
+        mFavorite.setOnClickListener(this);
+
         mVoteAverage = (TextView) rootView.findViewById(R.id.vote_average);
         mNest = (NestedScrollView) getActivity().findViewById(R.id.nested_scroll_view);
 
@@ -132,6 +139,8 @@ public class FragmentDetail extends Fragment
         //getActivity().getSupportLoaderManager().initLoader(ID_DETAIL_LOADER, null, this);
 
         return rootView;
+
+
     }
 
 
@@ -232,6 +241,7 @@ public class FragmentDetail extends Fragment
         mReleaseDate.setText(release_date);
         String movie_id = data.getString(INDEX_MOVIE_ID);
         mMovieId.setText(movie_id);
+        rootView.setTag(R.id.poster_path, movie_id);
 
         String original_title = data.getString(INDEX_ORIGINAL_TITLE);
         mOriginalTitle.setText(original_title);
@@ -252,11 +262,14 @@ public class FragmentDetail extends Fragment
     }
 
 
-    @Override
+     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.favorite_button:
                 buttonClick(v);
+                Toast.makeText(getActivity().getApplicationContext(), "This Is A Toast Android" + rootView.getTag(R.id.poster_path), Toast.LENGTH_SHORT)
+                        .show();
+
                 break;
             /*case R.id.another_view:
                 someMethod(param);
@@ -264,8 +277,10 @@ public class FragmentDetail extends Fragment
         }
     }
 
-    public void buttonClick(View button){
+    public void buttonClick(View v){
         ((buttonClickedListener) getActivity()).onButtonClicked();
+        /*Toast.makeText(getActivity(), "This Is A Toast Android Mainn", Toast.LENGTH_SHORT)
+                .show();*/
     }
 
 

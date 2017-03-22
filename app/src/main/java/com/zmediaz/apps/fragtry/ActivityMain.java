@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.facebook.stetho.Stetho;
 import com.zmediaz.apps.fragtry.MovieAdapter;
@@ -28,10 +29,11 @@ import com.zmediaz.apps.fragtry.utilities.NetworkUtils;
  * Created by Computer on 2/4/2017.
  */
 
+//TODO DOES NOT DOWNLOAD TO DB ONCE UPGRADED UNTIL YOU GO TO SETTINGS AND CHANGE SORT
 
 public class ActivityMain
         extends AppCompatActivity
-        implements FragmentMain.Callback{
+        implements FragmentMain.Callback, FragmentDetail.buttonClickedListener{
 
 
 
@@ -179,4 +181,10 @@ public class ActivityMain
 
         onItemSelected(columnID);
     }*/
+
+    @Override
+    public void onButtonClicked() {
+        Toast.makeText(this, "This Is A Toast Android On The Main", Toast.LENGTH_SHORT)
+                .show();
+    }
 }

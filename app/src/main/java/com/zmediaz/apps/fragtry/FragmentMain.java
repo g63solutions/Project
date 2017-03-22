@@ -35,6 +35,7 @@ public class FragmentMain extends Fragment
 implements MovieAdapter.MovieAdapterOnClickHandler,
         LoaderManager.LoaderCallbacks<Cursor> {
 
+
     public interface Callback {
          void onItemSelected(Uri columnId);
     }
@@ -197,6 +198,7 @@ implements MovieAdapter.MovieAdapterOnClickHandler,
         startActivity(movieDetailIntent);*/
 
         ((Callback) getActivity())
+
                 .onItemSelected(MovieContract.MovieEntry.buildMovieUriWithID(columnId));
 
 

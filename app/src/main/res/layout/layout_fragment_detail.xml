@@ -14,24 +14,24 @@
         android:id="@+id/poster_path"
         android:layout_width="0dp"
         android:layout_height="400dp"
-        android:layout_marginTop="8dp"
         android:transitionName="tposter_path"
-        app:layout_constraintTop_toBottomOf="@+id/original_title"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintRight_toRightOf="parent"
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.21" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp" />
 
     <TextView
         android:id="@+id/original_title"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
         android:textAppearance="@android:style/TextAppearance.Large"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/poster_path"
+        android:layout_marginLeft="8dp" />
 
 
     <TextView
@@ -72,5 +72,15 @@
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/overview" />
+
+    <Button
+        android:id="@+id/favorite_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+
+        android:text="Button"
+        app:layout_constraintTop_toBottomOf="@+id/overview"
+        tools:layout_editor_absoluteX="96dp" />
 
 </android.support.constraint.ConstraintLayout>
