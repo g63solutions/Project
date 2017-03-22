@@ -279,7 +279,7 @@ public class FragmentDetail extends Fragment
 
     public void buttonClick(View v){
         ((buttonClickedListener) getActivity()).onButtonClicked();
-        /*Toast.makeText(getActivity(), "This Is A Toast Android Main", Toast.LENGTH_SHORT)
+        /*Toast.makeText(getActivity(), "This Is A Toast In Fragment Detail", Toast.LENGTH_SHORT)
                 .show();*/
     }
 
