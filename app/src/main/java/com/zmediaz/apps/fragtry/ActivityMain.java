@@ -22,6 +22,8 @@ import com.facebook.stetho.Stetho;
 import com.zmediaz.apps.fragtry.MovieAdapter;
 
 import com.zmediaz.apps.fragtry.data.MovieContract;
+import com.zmediaz.apps.fragtry.sync.MovieSyncIntentService;
+import com.zmediaz.apps.fragtry.sync.MovieSyncTask;
 import com.zmediaz.apps.fragtry.sync.MovieSyncUtils;
 import com.zmediaz.apps.fragtry.utilities.NetworkUtils;
 
@@ -35,7 +37,7 @@ public class ActivityMain
         extends AppCompatActivity
         implements FragmentMain.Callback, FragmentDetail.buttonClickedListener{
 
-
+    private Toast mToast;
 
     private static final String FRAGMENTDETAIL_TAG = "FDTAG";
     private boolean mTwoPane;
@@ -184,7 +186,16 @@ public class ActivityMain
 
     @Override
     public void onButtonClicked() {
-        Toast.makeText(this, "This Is A Toast Android On The Main", Toast.LENGTH_SHORT)
-                .show();
+        if (mToast != null) mToast.cancel();
+        mToast = Toast.makeText(this, "This Is A Toast Android On The Main", Toast.LENGTH_SHORT);
+        mToast.show();
+
+        /*Toast.makeText(this, "This Is A Toast Android On The Main", Toast.LENGTH_SHORT).show();*/
+
+        /*Favorites Button Method*/
+        Intent addDeleteFavotite = new Intent(this, MovieSyncIntentService.class);
+        addDeleteFavotite.setAction(MovieSyncTask.ACTION_ADD_DELETE_FAVORITE);
+        startService(addDeleteFavotite);
+
     }
 }

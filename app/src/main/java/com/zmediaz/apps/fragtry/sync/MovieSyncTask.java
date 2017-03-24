@@ -14,7 +14,7 @@ import java.net.URL;
  * Created by Computer on 1/18/2017.
  */
 
-public class MovieSyncTask {
+/*public class MovieSyncTask {
 
 
     synchronized public static void syncMovie(Context context, String key) {
@@ -48,4 +48,19 @@ public class MovieSyncTask {
         }
     }
 
+}*/
+
+public class MovieSyncTask {
+    public static final String ACTION_ADD_DELETE_FAVORITE = "add-delete-favorite";
+
+    public static void executeTask(Context context, String action){
+        if (ACTION_ADD_DELETE_FAVORITE.equals(action)){
+            tAddDeleteFavorite(context);
+        }
+    }
+
+    private static void tAddDeleteFavorite(Context context){
+        MovieSyncUtils.addDeleteFavorite(context);
+
+    }
 }

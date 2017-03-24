@@ -267,8 +267,8 @@ public class FragmentDetail extends Fragment
         switch (v.getId()) {
             case R.id.favorite_button:
                 buttonClick(v);
-                Toast.makeText(getActivity().getApplicationContext(), "This Is A Toast Android" + rootView.getTag(R.id.poster_path), Toast.LENGTH_SHORT)
-                        .show();
+                /*Toast.makeText(getActivity().getApplicationContext(), "This Is A Toast Android Fragment Detail " + rootView.getTag(R.id.poster_path), Toast.LENGTH_SHORT)
+                        .show();*/
 
                 break;
             /*case R.id.another_view:

@@ -9,6 +9,7 @@ import com.zmediaz.apps.fragtry.R;
  * Created by Computer on 1/18/2017.
  */
 
+/*
 public class MovieSyncIntentService extends IntentService {
     String mKey;
 
@@ -22,5 +23,23 @@ public class MovieSyncIntentService extends IntentService {
         mKey = getString(R.string.api);
 
         MovieSyncTask.syncMovie(this, mKey);
+    }
+}
+*/
+
+
+
+public class MovieSyncIntentService extends IntentService {
+    String mKey;
+
+    public MovieSyncIntentService() {
+        super("MovieSyncIntentService");
+    }
+
+    @Override
+    protected void onHandleIntent(Intent intent) {
+
+       String action =intent.getAction();
+        MovieSyncTask.executeTask(this, action);
     }
 }
