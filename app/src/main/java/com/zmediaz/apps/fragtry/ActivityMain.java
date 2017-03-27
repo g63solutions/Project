@@ -183,7 +183,7 @@ public class ActivityMain
             case "addFavoriteButton": {
 
                 Intent addFavorite = new Intent(this, MovieSyncIntentService.class);
-                addFavorite.setAction(MovieSyncTask.ACTION_FAVORITES);
+                addFavorite.setAction(MovieSyncTask.ACTION_ADD_FAVORITES);
                 addFavorite.putExtra("MovieModel", movieModel);
                 startService(addFavorite);
 

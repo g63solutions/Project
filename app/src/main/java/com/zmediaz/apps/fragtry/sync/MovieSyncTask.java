@@ -48,16 +48,17 @@ public class MovieSyncTask {
 
     public static final String ACTION_DELETE_FAVORITE = "add-delete-favorite";
     public static final String ACTION_MOVIE_SYNC = "movie-sync";
-    public static final String ACTION_FAVORITES = "addToFavorites";
+    public static final String ACTION_ADD_FAVORITES = "addToFavorites";
 
     public static void executeTask(Context context, String action, MovieModel movieModel) {
         if (ACTION_DELETE_FAVORITE.equals(action)) {
             tDeleteFavorite(context, movieModel);
         } else if (ACTION_MOVIE_SYNC.equals(action)) {
             tMovieSync(context);
-        } else if (ACTION_FAVORITES.equals(action)){
-            tFavorites(context, movieModel);
+        } else if (ACTION_ADD_FAVORITES.equals(action)){
+            tAddFavorites(context, movieModel);
         }
+        
 
 
     }
@@ -70,7 +71,7 @@ public class MovieSyncTask {
         MovieUtils.movieSync(context);
     }
 
-    private static void tFavorites(Context context, MovieModel movieModel){
+    private static void tAddFavorites(Context context, MovieModel movieModel){
         MovieUtils.addToFavorites(context, movieModel);
     }
 }
