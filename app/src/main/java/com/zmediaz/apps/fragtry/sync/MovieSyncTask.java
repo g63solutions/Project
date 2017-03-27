@@ -58,7 +58,7 @@ public class MovieSyncTask {
         } else if (ACTION_ADD_FAVORITES.equals(action)){
             tAddFavorites(context, movieModel);
         }
-        
+
 
 
     }

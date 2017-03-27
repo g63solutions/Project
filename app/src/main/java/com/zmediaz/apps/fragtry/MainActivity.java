@@ -23,8 +23,8 @@ import com.zmediaz.apps.fragtry.data.MovieContract;
 import com.zmediaz.apps.fragtry.sync.MovieUtils;
 
 
-public class MainActivity extends AppCompatActivity
-        implements MovieAdapter.MovieAdapterOnClickHandler,
+public class MainActivity extends AppCompatActivity{
+        /*implements MovieAdapter.MovieAdapterOnClickHandler,
         LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -84,10 +84,10 @@ public class MainActivity extends AppCompatActivity
         switch (loaderId) {
 
             case MOVIE_LOADER_INT:
-                /* URI for all rows of weather data in our weather table */
+                *//* URI for all rows of weather data in our weather table *//*
                 Uri movieQueryUri = MovieContract.MovieEntry.CONTENT_URI;
 
-                /*CursorLoader
+                *//*CursorLoader
 
                 Added in API level 11
                 CursorLoader (Context context,
@@ -95,9 +95,9 @@ public class MainActivity extends AppCompatActivity
                     String[] projection,
                     String selection,
                     String[] selectionArgs,
-                    String sortOrder)    */
+                    String sortOrder)    *//*
 
-                /*PARAMETERS
+                *//*PARAMETERS
 
                 URI-	Uri: The URI, using the content:// scheme, for the content to retrieve.
 
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity
 
                 SORT ORDER-	String: How to order the rows, formatted as an SQL ORDER BY
                 clause (excluding the ORDER BY itself). Passing null will use the default
-                sort order, which may be unordered.*/
+                sort order, which may be unordered.*//*
 
                 return new CursorLoader(this,
                         movieQueryUri,
@@ -158,16 +158,16 @@ public class MainActivity extends AppCompatActivity
 
 
     private void showMovieDataView() {
-        /* First, hide the loading indicator */
+        *//* First, hide the loading indicator *//*
         mLoadingIndicator.setVisibility(View.INVISIBLE);
-        /* Finally, make sure the weather data is visible */
+        *//* Finally, make sure the weather data is visible *//*
         mRecyclerView.setVisibility(View.VISIBLE);
     }
 
     private void showLoading() {
-        /* Then, hide the weather data */
+        *//* Then, hide the weather data *//*
         mRecyclerView.setVisibility(View.INVISIBLE);
-        /* Finally, show the loading indicator */
+        *//* Finally, show the loading indicator *//*
         mLoadingIndicator.setVisibility(View.VISIBLE);
     }
     //TODO ON ActivityMain
@@ -202,14 +202,14 @@ public class MainActivity extends AppCompatActivity
     protected void onStart() {
         super.onStart();
 
-        /*TODO 3.5 Flag tied to this on change loder is restarted
+        *//*TODO 3.5 Flag tied to this on change loder is restarted
          * If the preferences for location or units have changed since the user was last in
          * MainActivity, perform another query and set the flag to false.
          *
          * This isn't the ideal solution because there really isn't a need to perform another
          * GET request just to change the units, but this is the simplest solution that gets the
          * job done for now.
-         */
+         *//*
        
         if (PREFERENCES_HAVE_BEEN_UPDATED) {
             Log.d(TAG, "onStart: preferences were updated");
@@ -217,7 +217,7 @@ public class MainActivity extends AppCompatActivity
             getSupportLoaderManager().restartLoader(MOVIE_LOADER_INT, null, this);
             PREFERENCES_HAVE_BEEN_UPDATED = false;
         }
-    }
+    }*/
 }
 
 /*

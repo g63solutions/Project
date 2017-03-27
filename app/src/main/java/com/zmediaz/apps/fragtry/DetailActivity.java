@@ -19,8 +19,8 @@ import com.zmediaz.apps.fragtry.data.MovieContract;
  * Created by Computer on 12/30/2016.
  */
 
-public class DetailActivity extends AppCompatActivity
-        implements LoaderManager.LoaderCallbacks<Cursor> {
+public class DetailActivity extends AppCompatActivity{
+        /*implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final String MOVIE_SHARE_HASHTAG = " #DRIVETHRU";
 
@@ -133,12 +133,12 @@ public class DetailActivity extends AppCompatActivity
 
         boolean cursorHasValidData = false;
         if (data != null && data.moveToFirst()) {
-            /* We have valid data, continue on to bind the data to the UI */
+            *//* We have valid data, continue on to bind the data to the UI *//*
             cursorHasValidData = true;
         }
 
         if (!cursorHasValidData) {
-            /* No data to display, simply return and do nothing */
+            *//* No data to display, simply return and do nothing *//*
             return;
         }
 
@@ -164,7 +164,7 @@ public class DetailActivity extends AppCompatActivity
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
 
-    }
+    }*/
 }
 
 /*
