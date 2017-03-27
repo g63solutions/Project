@@ -78,7 +78,7 @@ public class MovieUtils {
         mMovieCV.put(MovieContract.MovieEntry.COLUMN_IS_FAVORITE,
                 "TRUE");
 
-       /* mFavoritesUri = favoritesContentResolver.insert(*/
+       /* mFavoritesUri = favoritesContentResolver.insert*/
         final Uri returnUri;
         returnUri = favoritesContentResolver.insert(
                 MovieContract.FavoritesEntry.CONTENT_URI,
