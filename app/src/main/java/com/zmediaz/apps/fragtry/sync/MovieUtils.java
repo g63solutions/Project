@@ -25,7 +25,6 @@ import com.zmediaz.apps.fragtry.utilities.NetworkUtils;
 import com.zmediaz.apps.fragtry.utilities.TMDBJsonUtils;
 
 import java.net.URL;
-import java.util.concurrent.TimeUnit;
 
 
 import static android.os.Looper.getMainLooper;
@@ -55,8 +54,8 @@ public class MovieUtils {
         ContentResolver favoritesContentResolver = context.getContentResolver();
         ContentValues mFavoritesCV = new ContentValues();
 
-        ContentResolver movieContentResolver = context.getContentResolver();
-        ContentValues mMovieCV = new ContentValues();
+       /* ContentResolver movieContentResolver = context.getContentResolver();
+        ContentValues mMovieCV = new ContentValues();*/
 
         mFavoritesCV.put(MovieContract.FavoritesEntry.COLUMN_POSTER_PATH,
                 movieModel.getPosterPath());
@@ -75,8 +74,8 @@ public class MovieUtils {
 
         /*mMovieCV.put(MovieContract.MovieEntry.COLUMN_IS_FAVORITE,
                 movieModel.getFavorites());*/
-        mMovieCV.put(MovieContract.MovieEntry.COLUMN_IS_FAVORITE,
-                "TRUE");
+       /* mMovieCV.put(MovieContract.MovieEntry.COLUMN_IS_FAVORITE,
+                "TRUE");*/
 
        /* mFavoritesUri = favoritesContentResolver.insert*/
         final Uri returnUri;
@@ -85,8 +84,9 @@ public class MovieUtils {
                 mFavoritesCV
         );
 
+        AddFavoriteTrueMovieDB(movieModel, context);
 
-        String movieID = movieModel.getMovieId();
+       /* String movieID = movieModel.getMovieId();
         Uri uri = MovieContract.MovieEntry.CONTENT_URI;
         uri = uri.buildUpon().appendPath(movieID).build();
 
@@ -96,7 +96,7 @@ public class MovieUtils {
                 null,
                 null
 
-        );
+        );*/
 
 
         if (returnUri != null) {
@@ -117,9 +117,55 @@ public class MovieUtils {
 
     }
 
+
+    static void AddFavoriteTrueMovieDB(MovieModel movieModel, Context context){
+        //TODO MAKE THIS DB SPECIFIC POPULAR HIGHEST RATED
+        ContentResolver movieContentResolver = context.getContentResolver();
+        ContentValues mMovieCV = new ContentValues();
+
+        mMovieCV.put(MovieContract.MovieEntry.COLUMN_IS_FAVORITE,
+                "TRUE");
+
+        String movieID = movieModel.getMovieId();
+        Uri uri = MovieContract.MovieEntry.CONTENT_URI;
+        uri = uri.buildUpon().appendPath(movieID).build();
+
+        movieContentResolver.update(
+                uri,
+                mMovieCV,
+                null,
+                null
+
+        );
+
+    }
+
+    static void AddFavoriteFalseMovieDB(MovieModel movieModel, Context context){
+        //TODO MAKE THIS DB SPECIFIC POPULAR HIGHEST RATED
+        ContentResolver movieContentResolver = context.getContentResolver();
+        ContentValues mMovieCV = new ContentValues();
+
+        mMovieCV.put(MovieContract.MovieEntry.COLUMN_IS_FAVORITE,
+                "FALSE");
+
+        String movieID = movieModel.getMovieId();
+        Uri uri = MovieContract.MovieEntry.CONTENT_URI;
+        uri = uri.buildUpon().appendPath(movieID).build();
+
+        movieContentResolver.update(
+                uri,
+                mMovieCV,
+                null,
+                null
+
+        );
+
+    }
+
+
     /*Deletes Favorites*/
     static void deleteFavorite(Context context, MovieModel movieModel) {
-
+//TODO MAKE THIS DB SPECIFIC POPULAR HIGHEST RATED
         String movieID = movieModel.getMovieId();
 
         String mSelectionClause = MovieContract.FavoritesEntry.COLUMN_MOVIE_ID;
@@ -135,6 +181,9 @@ public class MovieUtils {
                 null,
                 null
         );
+
+        AddFavoriteFalseMovieDB(movieModel, context);
+
         if (mRowsDeleted > 0) {
             final Context tContext = context;
             Handler mHandler = new Handler(getMainLooper());
