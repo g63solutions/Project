@@ -12,7 +12,7 @@ public class MovieDbHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "movie.db";
 
-    public static final int DATABASE_VERSION = 4;
+    public static final int DATABASE_VERSION = 14;
 
     public MovieDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -34,6 +34,7 @@ public class MovieDbHelper extends SQLiteOpenHelper {
                         MovieContract.MovieEntry.COLUMN_ORIGINAL_TITLE + " STRING NOT NULL, " +
                         MovieContract.MovieEntry.COLUMN_BACKDROP_PATH + " STRING NOT NULL, " +
                         MovieContract.MovieEntry.COLUMN_VOTE_AVERAGE + " STRING NOT NULL, " +
+                        MovieContract.MovieEntry.COLUMN_IS_FAVORITE + " BOOLEAN DEFAULT FALSE, " +
 
                         " UNIQUE (" + MovieContract.MovieEntry.COLUMN_MOVIE_ID + ") ON CONFLICT REPLACE);";
 
@@ -48,6 +49,7 @@ public class MovieDbHelper extends SQLiteOpenHelper {
                         MovieContract.FavoritesEntry.COLUMN_ORIGINAL_TITLE + " STRING NOT NULL, " +
                         MovieContract.FavoritesEntry.COLUMN_BACKDROP_PATH + " STRING NOT NULL, " +
                         MovieContract.FavoritesEntry.COLUMN_VOTE_AVERAGE + " STRING NOT NULL, " +
+
 
                         " UNIQUE (" + MovieContract.FavoritesEntry.COLUMN_MOVIE_ID + ") ON CONFLICT REPLACE);";
 

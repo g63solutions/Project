@@ -1,17 +1,13 @@
 package com.zmediaz.apps.fragtry;
 
-import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,13 +15,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.facebook.stetho.Stetho;
-import com.zmediaz.apps.fragtry.MovieAdapter;
 
-import com.zmediaz.apps.fragtry.data.MovieContract;
+import com.zmediaz.apps.fragtry.data.MovieModel;
 import com.zmediaz.apps.fragtry.sync.MovieSyncIntentService;
 import com.zmediaz.apps.fragtry.sync.MovieSyncTask;
-import com.zmediaz.apps.fragtry.sync.MovieSyncUtils;
-import com.zmediaz.apps.fragtry.utilities.NetworkUtils;
+import com.zmediaz.apps.fragtry.sync.MovieUtils;
 
 /**
  * Created by Computer on 2/4/2017.
@@ -35,7 +29,7 @@ import com.zmediaz.apps.fragtry.utilities.NetworkUtils;
 
 public class ActivityMain
         extends AppCompatActivity
-        implements FragmentMain.Callback, FragmentDetail.buttonClickedListener{
+        implements FragmentMain.Callback, FragmentDetail.buttonClickedListener {
 
     private Toast mToast;
 
@@ -43,8 +37,7 @@ public class ActivityMain
     private boolean mTwoPane;
     /*Toolbar cToolBar;*/
 
-    MovieAdapter movieAdapter ;
-
+    MovieAdapter movieAdapter;
 
 
     @Override
@@ -56,12 +49,11 @@ public class ActivityMain
 
         setContentView(R.layout.layout_activity_main);
 
-        MovieSyncUtils.initialize(this);
+        MovieUtils.initialize(this);
 
         if (findViewById(R.id.detail_container) != null) {
 
             mTwoPane = true;
-
 
 
             if (savedInstanceState == null) {
@@ -71,7 +63,7 @@ public class ActivityMain
                         .commit();
 
                 /*defaultDetail();*/
-                         }
+            }
         } else {
             mTwoPane = false;
         }
@@ -144,7 +136,7 @@ public class ActivityMain
                     .replace(R.id.detail_container, fragment, FRAGMENTDETAIL_TAG)
                     .commit();*/
 
-        }else{
+        } else {
             /*Intent movieDetailIntent = new Intent(this, DetailActivity.class);
             Uri uriForTitleClicked = MovieContract.MovieEntry.buildMovieUriWithID(columnId);
             movieDetailIntent.setData(uriForTitleClicked);
@@ -155,11 +147,11 @@ public class ActivityMain
 
 
             ImageView tposter_path = (ImageView) findViewById(R.id.poster_path);
-            Pair<View, String> imagePair = Pair.create((View)tposter_path, "tposter_path");
+            Pair<View, String> imagePair = Pair.create((View) tposter_path, "tposter_path");
             ActivityOptionsCompat options =
                     ActivityOptionsCompat
                             .makeSceneTransitionAnimation
-                                    (ActivityMain.this,imagePair);
+                                    (ActivityMain.this, imagePair);
             ActivityCompat.startActivity(this, intent, options.toBundle());
 
             /*Intent intent = new Intent(this, ActivityDetail.class)
@@ -185,17 +177,44 @@ public class ActivityMain
     }*/
 
     @Override
-    public void onButtonClicked() {
-        if (mToast != null) mToast.cancel();
-        mToast = Toast.makeText(this, "This Is A Toast Android On The Main", Toast.LENGTH_SHORT);
-        mToast.show();
+    public void onButtonClicked(MovieModel movieModel, String situation) {
 
-        /*Toast.makeText(this, "This Is A Toast Android On The Main", Toast.LENGTH_SHORT).show();*/
+        switch (situation) {
+            case "addFavoriteButton": {
 
-        /*Favorites Button Method*/
-        Intent addDeleteFavotite = new Intent(this, MovieSyncIntentService.class);
-        addDeleteFavotite.setAction(MovieSyncTask.ACTION_ADD_DELETE_FAVORITE);
-        startService(addDeleteFavotite);
+                Intent addFavorite = new Intent(this, MovieSyncIntentService.class);
+                addFavorite.setAction(MovieSyncTask.ACTION_FAVORITES);
+                addFavorite.putExtra("MovieModel", movieModel);
+                startService(addFavorite);
+
+                break;
+            }
+
+            case "deleteFavoriteButton": {
+
+                Intent addFavorite = new Intent(this, MovieSyncIntentService.class);
+                addFavorite.setAction(MovieSyncTask.ACTION_DELETE_FAVORITE);
+                addFavorite.putExtra("MovieModel", movieModel);
+                startService(addFavorite);
+
+                break;
+            }
+
+
+
+        }
+
 
     }
 }
+
+ /* if (mToast != null) mToast.cancel();
+        mToast = Toast.makeText(this, "This Is A Toast Android On The Main", Toast.LENGTH_SHORT);
+        mToast.show();*/
+
+  /* if (mToast != null) mToast.cancel();
+        mToast = Toast.makeText(getActivity().getApplicationContext(), "This Is A Toast Android On The Main", Toast.LENGTH_SHORT);
+        mToast.show();*/
+
+
+

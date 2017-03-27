@@ -30,12 +30,18 @@ public class MovieContract {
         public static final String COLUMN_ORIGINAL_TITLE = "original_title";
         public static final String COLUMN_BACKDROP_PATH = "backdrop_path";
         public static final String COLUMN_VOTE_AVERAGE = "vote_average";
+        public static final String COLUMN_IS_FAVORITE = "favorite";
 
         public static Uri buildMovieUriWithID(long columnId) {
             return CONTENT_URI.buildUpon()
                     .appendPath(Long.toString(columnId))
                     .build();
         }
+       /* public static Uri buildFavoriteMovieUriWithID(String columnId) {
+            return CONTENT_URI.buildUpon()
+                    .appendPath(columnId)
+                    .build();
+        }*/
 
     }
 
@@ -54,6 +60,7 @@ public class MovieContract {
         public static final String COLUMN_ORIGINAL_TITLE = "original_title";
         public static final String COLUMN_BACKDROP_PATH = "backdrop_path";
         public static final String COLUMN_VOTE_AVERAGE = "vote_average";
+
 
         public static Uri buildFavoritesUriWithID(long columnId) {
             return CONTENT_URI.buildUpon()

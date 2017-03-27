@@ -9,7 +9,7 @@ import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceScreen;
 
-import com.zmediaz.apps.fragtry.sync.MovieSyncUtils;
+import com.zmediaz.apps.fragtry.sync.MovieUtils;
 
 /**
  * Created by Computer on 1/1/2017.
@@ -41,7 +41,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         Activity activity = getActivity();
-        MovieSyncUtils.startImmediateSync(activity);
+        MovieUtils.startImmediateSync(activity);
 
 
         {

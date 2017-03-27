@@ -4,6 +4,7 @@ import android.app.IntentService;
 import android.content.Intent;
 
 import com.zmediaz.apps.fragtry.R;
+import com.zmediaz.apps.fragtry.data.MovieModel;
 
 /**
  * Created by Computer on 1/18/2017.
@@ -38,8 +39,8 @@ public class MovieSyncIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-
+        MovieModel movieModel = (MovieModel)intent.getSerializableExtra("MovieModel");
        String action =intent.getAction();
-        MovieSyncTask.executeTask(this, action);
+        MovieSyncTask.executeTask(this, action, movieModel);
     }
 }

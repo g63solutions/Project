@@ -29,8 +29,6 @@ public class MovieAdapter
 
     private final Context mContext;
 
-
-
     private static final int FIRST_MOVIE = 0;
 
     static final String POSTER_URL = "https://image.tmdb.org/t/p/w500/";
@@ -41,8 +39,6 @@ public class MovieAdapter
         void onClick(long _id);
 
     }
-
-
 
     private Cursor mCursor;
 
@@ -58,7 +54,6 @@ public class MovieAdapter
                 .inflate(R.layout.layout_main_list_item, viewGroup, false);
 
         view.setFocusable(true);
-
 
         return new MovieAdapterViewHolder(view);
     }
@@ -78,8 +73,8 @@ public class MovieAdapter
                 .load(POSTER_URL+poster_path)
                 .into(movieAdapterViewHolder.mPosterPath);*/
 
-        Picasso.with(context).load(POSTER_URL+poster_path).into(movieAdapterViewHolder.mPosterPath,
-                PicassoPalette.with(POSTER_URL+poster_path, movieAdapterViewHolder.mPosterPath)
+        Picasso.with(context).load(POSTER_URL + poster_path).into(movieAdapterViewHolder.mPosterPath,
+                PicassoPalette.with(POSTER_URL + poster_path, movieAdapterViewHolder.mPosterPath)
                         .use(PicassoPalette.Profile.VIBRANT)
                         .intoBackground(movieAdapterViewHolder.placeHolder)
                         .intoTextColor(movieAdapterViewHolder.mVoteAverage, PicassoPalette.Swatch.BODY_TEXT_COLOR)
@@ -89,15 +84,11 @@ public class MovieAdapter
                         .intoTextColor(titleView, PicassoPalette.Swatch.BODY_TEXT_COLOR)*/
         );
 
-
-
         String vote_average = mCursor.getString(FragmentMain.INDEX_MOVIE_VOTE_AVERAGE);
 
         String mVoteAverage = vote_average;
 
         movieAdapterViewHolder.mVoteAverage.setText(mVoteAverage);
-
-
 
         /*String original_title = mCursor.getString(MainActivity.INDEX_MOVIE_ORIGINAL_TITLE);
 
@@ -138,15 +129,10 @@ public class MovieAdapter
             view.setOnClickListener(this);
         }
 
-
-
-
-
         @Override
         public void onClick(View view) {
 
             movieID(view);
-
 
             /*String movie = mMovieTextView.getText().toString();
             mClickHandler.onClick(movie);*/
@@ -161,7 +147,7 @@ public class MovieAdapter
             mClickHandler.onClick(movieID);
         }*/
 
-        public void defaultMovie(){
+        public void defaultMovie() {
 
             mCursor.moveToPosition(3);
             /*long movieID = mCursor.getLong(FragmentMain.INDEX__ID);*/
@@ -171,8 +157,7 @@ public class MovieAdapter
         }
 
 
-
-        public void movieID(View view){
+        public void movieID(View view) {
             int adapterPosition = getAdapterPosition();
             mCursor.moveToPosition(adapterPosition);
             /*long movieID = mCursor.getLong(FragmentMain.INDEX__ID);*/
@@ -181,9 +166,12 @@ public class MovieAdapter
             mClickHandler.onClick(movieID);
         }
 
+    }
 
+    public Cursor checkFavorite(Cursor cursorLeft){
+        Cursor cursorWithFavorite = cursorLeft;
 
-
+        return cursorWithFavorite;
     }
 }
 

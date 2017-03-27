@@ -1,14 +1,8 @@
 package com.zmediaz.apps.fragtry.sync;
 
-import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Context;
 
-import com.zmediaz.apps.fragtry.data.MovieContract;
-import com.zmediaz.apps.fragtry.utilities.NetworkUtils;
-import com.zmediaz.apps.fragtry.utilities.TMDBJsonUtils;
-
-import java.net.URL;
+import com.zmediaz.apps.fragtry.data.MovieModel;
 
 /**
  * Created by Computer on 1/18/2017.
@@ -51,16 +45,32 @@ import java.net.URL;
 }*/
 
 public class MovieSyncTask {
-    public static final String ACTION_ADD_DELETE_FAVORITE = "add-delete-favorite";
 
-    public static void executeTask(Context context, String action){
-        if (ACTION_ADD_DELETE_FAVORITE.equals(action)){
-            tAddDeleteFavorite(context);
+    public static final String ACTION_DELETE_FAVORITE = "add-delete-favorite";
+    public static final String ACTION_MOVIE_SYNC = "movie-sync";
+    public static final String ACTION_FAVORITES = "addToFavorites";
+
+    public static void executeTask(Context context, String action, MovieModel movieModel) {
+        if (ACTION_DELETE_FAVORITE.equals(action)) {
+            tDeleteFavorite(context, movieModel);
+        } else if (ACTION_MOVIE_SYNC.equals(action)) {
+            tMovieSync(context);
+        } else if (ACTION_FAVORITES.equals(action)){
+            tFavorites(context, movieModel);
         }
+
+
     }
 
-    private static void tAddDeleteFavorite(Context context){
-        MovieSyncUtils.addDeleteFavorite(context);
+    private static void tDeleteFavorite(Context context, MovieModel movieModel) {
+        MovieUtils.deleteFavorite(context, movieModel);
+    }
 
+    private static void tMovieSync(Context context) {
+        MovieUtils.movieSync(context);
+    }
+
+    private static void tFavorites(Context context, MovieModel movieModel){
+        MovieUtils.addToFavorites(context, movieModel);
     }
 }

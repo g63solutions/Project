@@ -5,11 +5,9 @@ import android.content.Intent;
 
 import android.database.Cursor;
 import android.net.Uri;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,13 +16,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 
-import com.facebook.stetho.Stetho;
 import com.zmediaz.apps.fragtry.data.MovieContract;
-import com.zmediaz.apps.fragtry.sync.MovieSyncUtils;
+import com.zmediaz.apps.fragtry.sync.MovieUtils;
 
 
 public class MainActivity extends AppCompatActivity
@@ -80,7 +76,7 @@ public class MainActivity extends AppCompatActivity
 
         getSupportLoaderManager().initLoader(MOVIE_LOADER_INT, null, this);
 
-        MovieSyncUtils.initialize(this);
+        MovieUtils.initialize(this);
     }
 
     @Override

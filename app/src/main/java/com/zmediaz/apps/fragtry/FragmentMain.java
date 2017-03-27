@@ -1,7 +1,5 @@
 package com.zmediaz.apps.fragtry;
 
-import android.app.Activity;
-import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,36 +8,29 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.facebook.stetho.Stetho;
 import com.zmediaz.apps.fragtry.data.MovieContract;
-import com.zmediaz.apps.fragtry.sync.MovieSyncUtils;
 
 /**
  * Created by Computer on 2/4/2017.
  */
 
 
-
 public class FragmentMain extends Fragment
-implements MovieAdapter.MovieAdapterOnClickHandler,
+        implements MovieAdapter.MovieAdapterOnClickHandler,
         LoaderManager.LoaderCallbacks<Cursor> {
 
 
     public interface Callback {
-         void onItemSelected(Uri columnId);
+        void onItemSelected(Uri columnId);
     }
-
 
 
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -57,7 +48,7 @@ implements MovieAdapter.MovieAdapterOnClickHandler,
     public static final int INDEX_MOVIE_ORIGINAL_TITLE = 1;
     public static final int INDEX_MOVIE_ID = 2;
     public static final int INDEX_MOVIE_MOVIE_ID = 3;
-    public static final int INDEX_MOVIE_VOTE_AVERAGE =4;
+    public static final int INDEX_MOVIE_VOTE_AVERAGE = 4;
 
     private static final int MOVIE_LOADER_INT = 7;
 
@@ -79,8 +70,8 @@ implements MovieAdapter.MovieAdapterOnClickHandler,
 
     @Override
     public View onCreateView(LayoutInflater inflater,
-                              ViewGroup container,
-                              Bundle savedInstanceState) {
+                             ViewGroup container,
+                             Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.layout_fragment_main, container, false);
 
@@ -94,16 +85,17 @@ implements MovieAdapter.MovieAdapterOnClickHandler,
 
         /*StaggeredGridLayoutManager layoutManager =
                 new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);*/
-    if(getActivity().getResources().getBoolean(R.bool.is_landscape)){
-        GridLayoutManager layoutManager =
-                new GridLayoutManager(getActivity(), 3);
-        mRecyclerView.setLayoutManager(layoutManager);
-    }else {GridLayoutManager layoutManager =
-            new GridLayoutManager(getActivity(), 2);
-        mRecyclerView.setLayoutManager(layoutManager);
-    }
+        if (getActivity().getResources().getBoolean(R.bool.is_landscape)) {
+            GridLayoutManager layoutManager =
+                    new GridLayoutManager(getActivity(), 3);
+            mRecyclerView.setLayoutManager(layoutManager);
+        } else {
+            GridLayoutManager layoutManager =
+                    new GridLayoutManager(getActivity(), 2);
+            mRecyclerView.setLayoutManager(layoutManager);
+        }
 
-       // mRecyclerView.setLayoutManager(layoutManager);
+        // mRecyclerView.setLayoutManager(layoutManager);
 
         mRecyclerView.setHasFixedSize(true);
 
@@ -115,13 +107,12 @@ implements MovieAdapter.MovieAdapterOnClickHandler,
 
         getActivity().getSupportLoaderManager().initLoader(MOVIE_LOADER_INT, null, this);
 
-        /*MovieSyncUtils.initialize(getActivity());*/
+        /*MovieUtils.initialize(getActivity());*/
 
         return rootView;
 
 
     }
-
 
 
     @Override
