@@ -72,7 +72,8 @@ public class FragmentDetail extends Fragment
             MovieContract.MovieEntry.COLUMN_MOVIE_ID,
             MovieContract.MovieEntry.COLUMN_ORIGINAL_TITLE,
             MovieContract.MovieEntry.COLUMN_BACKDROP_PATH,
-            MovieContract.MovieEntry.COLUMN_VOTE_AVERAGE
+            MovieContract.MovieEntry.COLUMN_VOTE_AVERAGE,
+            MovieContract.FavoritesEntry.COLUMN_IS_FAVORITE
     };
 
     public static final int INDEX_POSTER_PATH = 0;
@@ -82,6 +83,7 @@ public class FragmentDetail extends Fragment
     public static final int INDEX_ORIGINAL_TITLE = 4;
     public static final int INDEX_BACKDROP_PATH = 5;
     public static final int INDEX_VOTE_AVERAGE = 6;
+    public static final int INDEX_IS_FAVORITE =7;
 
 
     private ImageView mBackdropPath;
@@ -252,7 +254,10 @@ public class FragmentDetail extends Fragment
         mMovieModel.setMovieId(movie_id);
         rootView.setTag(R.id.poster_path, movie_id);
 
-        String overview = data.getString(INDEX_OVERVIEW);
+
+
+        /*String overview = data.getString(INDEX_OVERVIEW);*/
+        String overview = data.getString(INDEX_IS_FAVORITE);
         mOverview.setText(overview);
         mMovieModel.setOverview(overview);
 

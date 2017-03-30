@@ -30,7 +30,7 @@ public class MovieContract {
         public static final String COLUMN_ORIGINAL_TITLE = "original_title";
         public static final String COLUMN_BACKDROP_PATH = "backdrop_path";
         public static final String COLUMN_VOTE_AVERAGE = "vote_average";
-        public static final String COLUMN_IS_FAVORITE = "favorite";
+        /*public static final String COLUMN_IS_FAVORITE = "favorite";*/
 
         public static Uri buildMovieUriWithID(long columnId) {
             return CONTENT_URI.buildUpon()
@@ -53,13 +53,14 @@ public class MovieContract {
 
         public static final String TABLE_NAME = "favorites";
 
-        public static final String COLUMN_POSTER_PATH = "poster_path";
-        public static final String COLUMN_OVERVIEW = "overview";
-        public static final String COLUMN_RELEASE_DATE = "release_date";
-        public static final String COLUMN_MOVIE_ID = "movie_id";
-        public static final String COLUMN_ORIGINAL_TITLE = "original_title";
-        public static final String COLUMN_BACKDROP_PATH = "backdrop_path";
-        public static final String COLUMN_VOTE_AVERAGE = "vote_average";
+        public static final String COLUMN_POSTER_PATH = "f_poster_path";
+        public static final String COLUMN_OVERVIEW = "f_overview";
+        public static final String COLUMN_RELEASE_DATE = "f_release_date";
+        public static final String COLUMN_MOVIE_ID = "f_movie_id";
+        public static final String COLUMN_ORIGINAL_TITLE = "f_original_title";
+        public static final String COLUMN_BACKDROP_PATH = "f_backdrop_path";
+        public static final String COLUMN_VOTE_AVERAGE = "f_vote_average";
+        public static final String COLUMN_IS_FAVORITE = "f_favorite";
 
 
         public static Uri buildFavoritesUriWithID(long columnId) {

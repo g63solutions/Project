@@ -72,9 +72,9 @@ public class MovieUtils {
         mFavoritesCV.put(MovieContract.FavoritesEntry.COLUMN_VOTE_AVERAGE,
                 movieModel.getVoteAverage());
 
-        /*mMovieCV.put(MovieContract.MovieEntry.COLUMN_IS_FAVORITE,
-                movieModel.getFavorites());*/
        /* mMovieCV.put(MovieContract.MovieEntry.COLUMN_IS_FAVORITE,
+                movieModel.getFavorites());
+        mMovieCV.put(MovieContract.MovieEntry.COLUMN_IS_FAVORITE,
                 "TRUE");*/
 
        /* mFavoritesUri = favoritesContentResolver.insert*/
@@ -84,7 +84,7 @@ public class MovieUtils {
                 mFavoritesCV
         );
 
-        AddFavoriteTrueMovieDB(movieModel, context);
+        /*AddFavoriteTrueMovieDB(movieModel, context);*/
 
        /* String movieID = movieModel.getMovieId();
         Uri uri = MovieContract.MovieEntry.CONTENT_URI;
@@ -118,7 +118,7 @@ public class MovieUtils {
     }
 
 
-    static void AddFavoriteTrueMovieDB(MovieModel movieModel, Context context){
+   /* static void AddFavoriteTrueMovieDB(MovieModel movieModel, Context context){
         //TODO MAKE THIS DB SPECIFIC POPULAR HIGHEST RATED
         ContentResolver movieContentResolver = context.getContentResolver();
         ContentValues mMovieCV = new ContentValues();
@@ -138,9 +138,9 @@ public class MovieUtils {
 
         );
 
-    }
+    }*/
 
-    static void AddFavoriteFalseMovieDB(MovieModel movieModel, Context context){
+    /*static void AddFavoriteFalseMovieDB(MovieModel movieModel, Context context){
         //TODO MAKE THIS DB SPECIFIC POPULAR HIGHEST RATED
         ContentResolver movieContentResolver = context.getContentResolver();
         ContentValues mMovieCV = new ContentValues();
@@ -160,7 +160,7 @@ public class MovieUtils {
 
         );
 
-    }
+    }*/
 
 
     /*Deletes Favorites*/
@@ -182,7 +182,7 @@ public class MovieUtils {
                 null
         );
 
-        AddFavoriteFalseMovieDB(movieModel, context);
+        /*AddFavoriteFalseMovieDB(movieModel, context);*/
 
         if (mRowsDeleted > 0) {
             final Context tContext = context;

@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -115,7 +116,7 @@ public class MovieProvider extends ContentProvider {
             }*/
 
             case CODE_MOVIE_WITH_MOVIE_ID: {
-                String movieTitle = uri.getLastPathSegment();
+               /* String movieTitle = uri.getLastPathSegment();
 
                 String[] selectionArguments = new String[]{movieTitle};
 
@@ -128,6 +129,35 @@ public class MovieProvider extends ContentProvider {
                         null,
                         null,
                         sortOrder);
+
+                break;*/
+
+
+                SQLiteQueryBuilder _QB = new SQLiteQueryBuilder();
+
+                _QB.setTables(MovieContract.MovieEntry.TABLE_NAME +
+                        " LEFT OUTER JOIN " +
+                        MovieContract.FavoritesEntry.TABLE_NAME +
+                        " ON " +
+                        MovieContract.MovieEntry.COLUMN_MOVIE_ID +
+                        " = " +
+                        MovieContract.FavoritesEntry.COLUMN_MOVIE_ID);
+
+                String movieTitle = uri.getLastPathSegment();
+
+                String[] selectionArguments = new String[]{movieTitle};
+
+                SQLiteDatabase db = mOpenHelper.getWritableDatabase();
+
+                cursor = _QB.query(db,
+                        projection,
+                        MovieContract.MovieEntry.COLUMN_MOVIE_ID + " = ? ",
+                        selectionArguments,
+                        null,
+                        null,
+                        sortOrder);
+
+
 
                 break;
             }
@@ -214,7 +244,7 @@ public class MovieProvider extends ContentProvider {
                 String id = uri.getPathSegments().get(1);
                 numRowsDeleted = mOpenHelper.getWritableDatabase().delete(
                         MovieContract.FavoritesEntry.TABLE_NAME,
-                        "movie_id=?",
+                        "f_movie_id=?",
                         new String[]{id}
                 );
 
