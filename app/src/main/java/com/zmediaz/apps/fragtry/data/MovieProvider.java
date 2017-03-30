@@ -10,6 +10,8 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import static android.R.id.content;
+
 /**
  * Created by Computer on 1/9/2017.
  */
@@ -218,7 +220,8 @@ public class MovieProvider extends ContentProvider {
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
 
         }
-        getContext().getContentResolver().notifyChange(uri, null);
+        /*getContext().getContentResolver().notifyChange(uri, null);*/
+        getContext().getContentResolver().notifyChange(Uri.parse("content://com.zmediaz.apps.fragtry/movie"), null);
 
         return returnUri;
     }
@@ -256,7 +259,8 @@ public class MovieProvider extends ContentProvider {
                 throw new UnsupportedOperationException("Unkown uri:" + uri);
         }
         if (numRowsDeleted != 0) {
-            getContext().getContentResolver().notifyChange(uri, null);
+            /*getContext().getContentResolver().notifyChange(uri, null);*/
+            getContext().getContentResolver().notifyChange(Uri.parse("content://com.zmediaz.apps.fragtry/movie"), null);
         }
         return numRowsDeleted;
     }

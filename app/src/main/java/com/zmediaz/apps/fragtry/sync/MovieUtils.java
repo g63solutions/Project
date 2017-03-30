@@ -72,6 +72,8 @@ public class MovieUtils {
         mFavoritesCV.put(MovieContract.FavoritesEntry.COLUMN_VOTE_AVERAGE,
                 movieModel.getVoteAverage());
 
+        final String movieToast = movieModel.getOriginalTitle();
+
        /* mMovieCV.put(MovieContract.MovieEntry.COLUMN_IS_FAVORITE,
                 movieModel.getFavorites());
         mMovieCV.put(MovieContract.MovieEntry.COLUMN_IS_FAVORITE,
@@ -107,8 +109,11 @@ public class MovieUtils {
                 public void run() {
 
                     if (mToast != null) mToast.cancel();
+                    /*mToast = Toast.makeText
+                            (tContext, "Added to FAVORITES " + returnUri, Toast.LENGTH_SHORT);*/
                     mToast = Toast.makeText
-                            (tContext, "Added to FAVORITES " + returnUri, Toast.LENGTH_SHORT);
+                            (tContext, "Added " +movieToast+ " to FAVORITES ", Toast.LENGTH_SHORT);
+
                     mToast.show();
                 }
             });
@@ -183,7 +188,7 @@ public class MovieUtils {
         );
 
         /*AddFavoriteFalseMovieDB(movieModel, context);*/
-
+        final String movieToast = movieModel.getOriginalTitle();
         if (mRowsDeleted > 0) {
             final Context tContext = context;
             Handler mHandler = new Handler(getMainLooper());
@@ -193,7 +198,7 @@ public class MovieUtils {
 
                     if (mToast != null) mToast.cancel();
                     mToast = Toast.makeText
-                            (tContext, "Deleted from FAVORITES ", Toast.LENGTH_SHORT);
+                            (tContext, "Deleted " +movieToast+ " from FAVORITES ", Toast.LENGTH_SHORT);
                     mToast.show();
                 }
             });
