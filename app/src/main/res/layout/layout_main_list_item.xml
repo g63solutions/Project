@@ -50,7 +50,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?android:selectableItemBackground"
-        android:orientation="horizontal" />
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            card_view:srcCompat="@drawable/ic_unfavorite" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/placeNameHolder"
@@ -68,6 +76,16 @@
             android:paddingLeft="10dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             />
+
+        <ImageButton
+            android:id="@+id/selector_favorite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="0dp"
+            android:background="@drawable/selctor_favorite"
+            android:gravity="right"
+            android:paddingRight="10dp" />
         <!--android:textColor="@android:color/white"-->
 
     </LinearLayout>

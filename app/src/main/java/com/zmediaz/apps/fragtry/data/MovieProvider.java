@@ -165,7 +165,39 @@ public class MovieProvider extends ContentProvider {
             }
 
             case CODE_MOVIE: {
-                cursor = mOpenHelper.getReadableDatabase().query(
+
+                SQLiteQueryBuilder _QB = new SQLiteQueryBuilder();
+
+                _QB.setTables(MovieContract.MovieEntry.TABLE_NAME +
+                        " LEFT OUTER JOIN " +
+                        MovieContract.FavoritesEntry.TABLE_NAME +
+                        " ON " +
+                        MovieContract.MovieEntry.COLUMN_MOVIE_ID +
+                        " = " +
+                        MovieContract.FavoritesEntry.COLUMN_MOVIE_ID);
+
+                String movieTitle = uri.getLastPathSegment();
+
+                String[] selectionArguments = new String[]{movieTitle};
+
+                SQLiteDatabase db = mOpenHelper.getWritableDatabase();
+
+                cursor = _QB.query(db,
+                        projection,
+                        null,
+                        null,
+                        null,
+                        null,
+                        sortOrder);
+
+
+
+                break;
+
+
+
+
+                /*cursor = mOpenHelper.getReadableDatabase().query(
                         MovieContract.MovieEntry.TABLE_NAME,
                         projection,
                         selection,
@@ -173,7 +205,7 @@ public class MovieProvider extends ContentProvider {
                         null,
                         null,
                         sortOrder);
-                break;
+                break;*/
 
 
             }

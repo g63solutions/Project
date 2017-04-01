@@ -38,7 +38,7 @@ public class FragmentMain extends Fragment
     public static final String[] MAIN_MOVIE_SCREEN = {
             MovieContract.MovieEntry.COLUMN_POSTER_PATH,
             MovieContract.MovieEntry.COLUMN_ORIGINAL_TITLE,
-            MovieContract.MovieEntry._ID,
+            /*MovieContract.MovieEntry._ID,*/
 
             MovieContract.MovieEntry.COLUMN_MOVIE_ID,
             MovieContract.MovieEntry.COLUMN_VOTE_AVERAGE
@@ -46,9 +46,9 @@ public class FragmentMain extends Fragment
 
     public static final int INDEX_MOVIE_POSTER_PATH = 0;
     public static final int INDEX_MOVIE_ORIGINAL_TITLE = 1;
-    public static final int INDEX_MOVIE_ID = 2;
-    public static final int INDEX_MOVIE_MOVIE_ID = 3;
-    public static final int INDEX_MOVIE_VOTE_AVERAGE = 4;
+    /*public static final int INDEX_MOVIE_ID = 2;*/
+    public static final int INDEX_MOVIE_MOVIE_ID = 2;
+    public static final int INDEX_MOVIE_VOTE_AVERAGE = 3;
 
     private static final int MOVIE_LOADER_INT = 7;
 
