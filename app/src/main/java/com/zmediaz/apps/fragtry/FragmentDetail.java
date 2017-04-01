@@ -1,37 +1,35 @@
 package com.zmediaz.apps.fragtry;
 
-
-        import android.content.Intent;
-        import android.database.Cursor;
-        import android.net.Uri;
-        import android.os.Bundle;
-        import android.support.annotation.Nullable;
-                import android.support.design.widget.CollapsingToolbarLayout;
-                import android.support.v4.app.Fragment;
-        import android.support.v4.app.LoaderManager;
-        import android.support.v4.app.ShareCompat;
-        import android.support.v4.content.CursorLoader;
-        import android.support.v4.content.Loader;
-        import android.support.v4.widget.NestedScrollView;
-        import android.view.LayoutInflater;
-        import android.view.MenuItem;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.Button;
-                import android.widget.ImageButton;
-        import android.widget.ImageView;
-                import android.widget.TextView;
-                import com.github.florent37.picassopalette.PicassoPalette;
-        import com.squareup.picasso.Picasso;
-        import com.zmediaz.apps.fragtry.data.MovieContract;
-        import com.zmediaz.apps.fragtry.data.MovieModel;
-        import com.zmediaz.apps.fragtry.sync.MovieSyncIntentService;
-        import com.zmediaz.apps.fragtry.sync.MovieSyncTask;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.app.ShareCompat;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
+import android.support.v4.widget.NestedScrollView;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
+import com.github.florent37.picassopalette.PicassoPalette;
+import com.squareup.picasso.Picasso;
+import com.zmediaz.apps.fragtry.data.MovieContract;
+import com.zmediaz.apps.fragtry.data.MovieModel;
+import com.zmediaz.apps.fragtry.sync.MovieSyncIntentService;
+import com.zmediaz.apps.fragtry.sync.MovieSyncTask;
 
 /**
  * Created by Computer on 2/4/2017.
  */
-
 
 public class FragmentDetail extends Fragment
         implements LoaderManager.LoaderCallbacks<Cursor>, View.OnClickListener {
@@ -125,7 +123,6 @@ public class FragmentDetail extends Fragment
         mVoteAverage = (TextView) rootView.findViewById(R.id.vote_average);
         mNest = (NestedScrollView) getActivity().findViewById(R.id.nested_scroll_view);
         return rootView;
-
     }
 
     @Override
@@ -201,7 +198,6 @@ public class FragmentDetail extends Fragment
                         .intoTextColor(mOverview, PicassoPalette.Swatch.BODY_TEXT_COLOR)
                         .use(PicassoPalette.Profile.VIBRANT_LIGHT)
                         .intoTextColor(mOriginalTitle, PicassoPalette.Swatch.TITLE_TEXT_COLOR)
-
         );
 
         mMovieModel = new MovieModel();
@@ -228,7 +224,6 @@ public class FragmentDetail extends Fragment
             mHeartButton.setSelected(true);
         }
 
-
         String release_date = data.getString(INDEX_RELEASE_DATE);
         mReleaseDate.setText(release_date);
         mMovieModel.setReleaseDate(release_date);
@@ -246,12 +241,10 @@ public class FragmentDetail extends Fragment
         mMovieModel.setVoteAverage(vote_average);
 
         mMovieSummary = String.format("%s - %s - %s", original_title, release_date, vote_average);
-
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-
     }
 
     @Override
@@ -270,7 +263,6 @@ public class FragmentDetail extends Fragment
                 if (v.isSelected()) {
                     buttonClick(v, "deleteFavoriteButton");
                     v.setSelected(false);
-
                 } else {
                     buttonClick(v, "addFavoriteButton");
                     v.setSelected(true);
@@ -286,9 +278,7 @@ public class FragmentDetail extends Fragment
 
     public void buttonClick(View v, String situation) {
         ((buttonClickedListener) getActivity()).onButtonClicked(mMovieModel, situation);
-
     }
-
 }
 
 
