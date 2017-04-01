@@ -24,8 +24,6 @@ import com.github.florent37.picassopalette.PicassoPalette;
 import com.squareup.picasso.Picasso;
 import com.zmediaz.apps.fragtry.data.MovieContract;
 import com.zmediaz.apps.fragtry.data.MovieModel;
-import com.zmediaz.apps.fragtry.sync.MovieSyncIntentService;
-import com.zmediaz.apps.fragtry.sync.MovieSyncTask;
 
 /**
  * Created by Computer on 2/4/2017.
@@ -106,7 +104,7 @@ public class FragmentDetail extends Fragment
             mUri = arguments.getParcelable(FragmentDetail.DETAIL_URI);
         }
 
-        rootView = inflater.inflate(R.layout.layout_fragment_detail, container, false);
+        rootView = inflater.inflate(R.layout.yout_fragment_detail, container, false);
         mBackdropPath = (ImageView) getActivity().findViewById(R.id.backdrop_path);
         mPosterPath = (ImageView) rootView.findViewById(R.id.poster_path);
         mOverview = (TextView) rootView.findViewById(R.id.overview);

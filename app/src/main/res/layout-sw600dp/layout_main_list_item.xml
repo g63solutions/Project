@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="2dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="89dp">
+
+    <ImageView
+        android:id="@+id/poster_path"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:clickable="false"
+        android:contextClickable="false"
+        android:elevation="2dp"
+        android:scaleType="centerCrop"
+        android:transitionName="tposter_path"
+        app:layout_constraintDimensionRatio="2:3"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/sing_poster_path" />
+
+    <ImageButton
+        android:id="@+id/selector_favorite"
+        android:layout_width="20dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/selctor_favorite"
+        android:elevation="8dp"
+        android:gravity="right"
+        android:paddingRight="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/poster_path"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintRight_toRightOf="@+id/poster_path"
+        app:layout_constraintTop_toBottomOf="@+id/poster_path" />
+
+    <!--android:layout_width="548dp" is really match parent-->
+    <LinearLayout
+        android:id="@+id/mainHolder"
+        android:layout_width="548dp"
+        android:layout_height="wrap_content"
+        android:elevation="2dp"
+        android:orientation="horizontal"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintTop_toBottomOf="@+id/poster_path"
+        tools:layout_editor_absoluteX="8dp">
+
+        <TextView
+            android:id="@+id/vote_average"
+            android:layout_width="0dp"
+            android:elevation="3dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:paddingLeft="00dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            app:layout_constraintBottom_toBottomOf="@+id/mainHolder"
+            app:layout_constraintLeft_toLeftOf="@+id/mainHolder"
+            app:layout_constraintTop_toBottomOf="@+id/poster_path"
+            app:layout_constraintVertical_bias="0.666"
+            tools:text="8.5" />
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

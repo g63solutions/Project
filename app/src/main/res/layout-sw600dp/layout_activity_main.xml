@@ -25,7 +25,7 @@
         android:layout_height="match_parent"
         android:layout_weight="4"
 
-        tools:layout="@layout/layout_fragment_detail"
+        tools:layout="@layout/yout_fragment_detail"
         tools:context ="com.zmediaz.apps.fragtry.FragmentDetail"/>
 </LinearLayout>-->
 
@@ -71,7 +71,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="4"
-        tools:layout="@layout/layout_fragment_detail"
+        tools:layout="@layout/yout_fragment_detail"
         tools:context ="com.zmediaz.apps.fragtry.FragmentDetail"/>-->
 
 
@@ -82,7 +82,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="4"
-        tools:layout="@layout/layout_fragment_detail"
+        tools:layout="@layout/yout_fragment_detail"
         tools:context ="com.zmediaz.apps.fragtry.FragmentDetail">
         <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
@@ -135,7 +135,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
-                tools:layout="@layout/layout_fragment_detail"
+                tools:layout="@layout/yout_fragment_detail"
                 tools:context ="com.zmediaz.apps.fragtry.FragmentDetail"/>-->
             <android.support.v4.widget.NestedScrollView
                 android:id="@+id/nested_scroll_view"
@@ -152,7 +152,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
 
-                        tools:layout="@layout/layout_fragment_detail"
+                        tools:layout="@layout"
                         tools:context ="com.zmediaz.apps.fragtry.FragmentDetail"/>
 
                 </LinearLayout>

@@ -59,7 +59,7 @@ public class DetailActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_fragment_detail);
+        setContentView(R.layout.yout_fragment_detail);
 
         mPosterPath = (TextView) findViewById(R.id.poster_path);
         mOverview = (TextView) findViewById(R.id.overview);
