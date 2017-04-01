@@ -1,55 +1,44 @@
 package com.zmediaz.apps.fragtry;
 
 
-import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.app.ShareCompat;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
-import android.support.v4.widget.NestedScrollView;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
-
-import com.github.florent37.picassopalette.PicassoPalette;
-import com.squareup.picasso.Picasso;
-import com.zmediaz.apps.fragtry.data.MovieContract;
-import com.zmediaz.apps.fragtry.data.MovieModel;
-import com.zmediaz.apps.fragtry.sync.MovieSyncIntentService;
-import com.zmediaz.apps.fragtry.sync.MovieSyncTask;
+        import android.content.Intent;
+        import android.database.Cursor;
+        import android.net.Uri;
+        import android.os.Bundle;
+        import android.support.annotation.Nullable;
+                import android.support.design.widget.CollapsingToolbarLayout;
+                import android.support.v4.app.Fragment;
+        import android.support.v4.app.LoaderManager;
+        import android.support.v4.app.ShareCompat;
+        import android.support.v4.content.CursorLoader;
+        import android.support.v4.content.Loader;
+        import android.support.v4.widget.NestedScrollView;
+        import android.view.LayoutInflater;
+        import android.view.MenuItem;
+        import android.view.View;
+        import android.view.ViewGroup;
+        import android.widget.Button;
+                import android.widget.ImageButton;
+        import android.widget.ImageView;
+                import android.widget.TextView;
+                import com.github.florent37.picassopalette.PicassoPalette;
+        import com.squareup.picasso.Picasso;
+        import com.zmediaz.apps.fragtry.data.MovieContract;
+        import com.zmediaz.apps.fragtry.data.MovieModel;
+        import com.zmediaz.apps.fragtry.sync.MovieSyncIntentService;
+        import com.zmediaz.apps.fragtry.sync.MovieSyncTask;
 
 /**
  * Created by Computer on 2/4/2017.
  */
 
-/*      "backdrop_sizes": ["w300","w780","w1280","original"],
-        "logo_sizes": ["w45","w92","w154","w300","w500","original"],
-        "poster_sizes": ["w92","w154","w185","w342","w500","w780","original"],
-        "profile_sizes": ["w45","w185","h632","original"],
-        "still_sizes": ["w92","w185","w300","original"]*/
 
 public class FragmentDetail extends Fragment
         implements LoaderManager.LoaderCallbacks<Cursor>, View.OnClickListener {
 
     public interface buttonClickedListener {
         public void onButtonClicked(MovieModel movieModel, String situation);
-    };
+    }
 
     MovieModel mMovieModel;
 
@@ -59,11 +48,11 @@ public class FragmentDetail extends Fragment
 
     static final String POSTER_URL = "https://image.tmdb.org/t/p/w500/";
 
-    private String mMovieSummary;
-
     private Uri mUri;
 
     private static final int DETAIL_LOADER = 0;
+
+    private String mMovieSummary;
 
     public static final String[] MOVIE_DETAIL_PROJECTION = {
             MovieContract.MovieEntry.COLUMN_POSTER_PATH,
@@ -83,8 +72,9 @@ public class FragmentDetail extends Fragment
     public static final int INDEX_ORIGINAL_TITLE = 4;
     public static final int INDEX_BACKDROP_PATH = 5;
     public static final int INDEX_VOTE_AVERAGE = 6;
-    public static final int INDEX_IS_FAVORITE =7;
+    public static final int INDEX_IS_FAVORITE = 7;
 
+    private View rootView;
 
     private ImageView mBackdropPath;
     private ImageView mPosterPath;
@@ -93,15 +83,12 @@ public class FragmentDetail extends Fragment
     private TextView mReleaseDate;
     private TextView mMovieId;
     private TextView mOriginalTitle;
+    private TextView mVoteAverage;
+
     private Button mFavorite;
     private Button mUnfavorite;
 
-
-    private TextView mVoteAverage;
-
-    private View rootView;
-
-
+    private ImageButton mHeartButton;
 
     private NestedScrollView mNest;
 
@@ -114,7 +101,6 @@ public class FragmentDetail extends Fragment
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-
         setHasOptionsMenu(true);
 
         Bundle arguments = getArguments();
@@ -122,38 +108,25 @@ public class FragmentDetail extends Fragment
             mUri = arguments.getParcelable(FragmentDetail.DETAIL_URI);
         }
 
-
         rootView = inflater.inflate(R.layout.layout_fragment_detail, container, false);
-        /*mPosterPath = (TextView) rootView.findViewById(R.id.poster_path);*/
         mBackdropPath = (ImageView) getActivity().findViewById(R.id.backdrop_path);
         mPosterPath = (ImageView) rootView.findViewById(R.id.poster_path);
-
         mOverview = (TextView) rootView.findViewById(R.id.overview);
         mReleaseDate = (TextView) rootView.findViewById(R.id.release_date);
         mMovieId = (TextView) rootView.findViewById(R.id.movie_id);
         rootView.setTag(R.id.poster_path, mMovieId);
         mOriginalTitle = (TextView) rootView.findViewById(R.id.original_title);
-
         mFavorite = (Button) rootView.findViewById(R.id.favorite_button);
         mFavorite.setOnClickListener(this);
-
         mUnfavorite = (Button) rootView.findViewById(R.id.unfavorite_button);
         mUnfavorite.setOnClickListener(this);
-
+        mHeartButton = (ImageButton) rootView.findViewById(R.id.selector_favorite);
+        mHeartButton.setOnClickListener(this);
         mVoteAverage = (TextView) rootView.findViewById(R.id.vote_average);
         mNest = (NestedScrollView) getActivity().findViewById(R.id.nested_scroll_view);
-
-
-
-        //if (mUri == null) throw new NullPointerException("URI for DetailActivity cannot be null");
-
-        //getActivity().getSupportLoaderManager().initLoader(ID_DETAIL_LOADER, null, this);
-
         return rootView;
 
-
     }
-
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -169,19 +142,15 @@ public class FragmentDetail extends Fragment
         return shareIntent;
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-
         int id = item.getItemId();
-
 
         if (id == R.id.action_settings) {
             Intent startSettingsActivity = new Intent(getActivity(), Settings.class);
             startActivity(startSettingsActivity);
             return true;
-
         }
 
         return super.onOptionsItemSelected(item);
@@ -191,7 +160,6 @@ public class FragmentDetail extends Fragment
     public Loader<Cursor> onCreateLoader(int loaderId, Bundle loaderArgs) {
 
         if (null != mUri) {
-
 
             return new CursorLoader(getActivity(),
                     mUri,
@@ -233,18 +201,14 @@ public class FragmentDetail extends Fragment
                         .intoTextColor(mOverview, PicassoPalette.Swatch.BODY_TEXT_COLOR)
                         .use(PicassoPalette.Profile.VIBRANT_LIGHT)
                         .intoTextColor(mOriginalTitle, PicassoPalette.Swatch.TITLE_TEXT_COLOR)
-                        /*.intoTextColor(textView)*/
 
-                        /*.use(PicassoPalette.Profile.VIBRANT)
-                        .intoBackground(titleView, PicassoPalette.Swatch.RGB)
-                        .intoTextColor(titleView, PicassoPalette.Swatch.BODY_TEXT_COLOR)*/
         );
 
         mMovieModel = new MovieModel();
         mMovieModel.setBackdropPath(backdrop_path);
         String poster_path = data.getString(INDEX_POSTER_PATH);
         mMovieModel.setPosterPath(poster_path);
-        /*mPosterPath.setText(poster_path);*/
+
         Picasso.with(getActivity())
                 .load(POSTER_URL + poster_path)
                 .into(mPosterPath);
@@ -254,12 +218,16 @@ public class FragmentDetail extends Fragment
         mMovieModel.setMovieId(movie_id);
         rootView.setTag(R.id.poster_path, movie_id);
 
-
-
-        /*String overview = data.getString(INDEX_OVERVIEW);*/
-        String overview = data.getString(INDEX_IS_FAVORITE);
+        String overview = data.getString(INDEX_OVERVIEW);
         mOverview.setText(overview);
         mMovieModel.setOverview(overview);
+
+        /*Favorite Button*/
+        String favoriteState = data.getString(INDEX_IS_FAVORITE);
+        if (null != favoriteState) {
+            mHeartButton.setSelected(true);
+        }
+
 
         String release_date = data.getString(INDEX_RELEASE_DATE);
         mReleaseDate.setText(release_date);
@@ -278,6 +246,7 @@ public class FragmentDetail extends Fragment
         mMovieModel.setVoteAverage(vote_average);
 
         mMovieSummary = String.format("%s - %s - %s", original_title, release_date, vote_average);
+
     }
 
     @Override
@@ -285,21 +254,28 @@ public class FragmentDetail extends Fragment
 
     }
 
-
-     @Override
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.favorite_button: {
                 buttonClick(v, "addFavoriteButton");
-                /*Toast.makeText(getActivity().getApplicationContext(),
-                "This Is A Toast Android Fragment Detail " + rootView.getTag(R.id.poster_path),
-                Toast.LENGTH_SHORT)
-                        .show();*/
-
                 break;
             }
-            case R.id.unfavorite_button:{
+
+            case R.id.unfavorite_button: {
                 buttonClick(v, "deleteFavoriteButton");
+            }
+
+            case R.id.selector_favorite: {
+                if (v.isSelected()) {
+                    buttonClick(v, "deleteFavoriteButton");
+                    v.setSelected(false);
+
+                } else {
+                    buttonClick(v, "addFavoriteButton");
+                    v.setSelected(true);
+                    break;
+                }
             }
 
             /*case R.id.another_view:
@@ -308,18 +284,12 @@ public class FragmentDetail extends Fragment
         }
     }
 
-    public void buttonClick(View v, String situation){
+    public void buttonClick(View v, String situation) {
         ((buttonClickedListener) getActivity()).onButtonClicked(mMovieModel, situation);
 
-
-        /*Toast.makeText(getActivity(), "This Is A Toast In Fragment Detail", Toast.LENGTH_SHORT)
-                .show();*/
     }
-
 
 }
 
-/*
-35 3
-5 35*/
+
 

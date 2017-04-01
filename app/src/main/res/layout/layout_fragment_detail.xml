@@ -93,4 +93,14 @@
         app:layout_constraintLeft_toRightOf="@+id/favorite_button"
         android:layout_marginLeft="32dp" />
 
+    <ImageButton
+        android:id="@+id/selector_favorite"
+        android:background="@drawable/selctor_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/unfavorite_button"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/unfavorite_button"
+        android:layout_marginBottom="8dp" />
+
 </android.support.constraint.ConstraintLayout>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- IMPORTANT The item that appears first will show -->
+<item android:state_selected="false"
+    android:drawable="@drawable/ic_unfavorite"/><!-- not pressed -->
+    <item android:state_selected="true"
+        android:drawable="@drawable/ic_favorite"/><!-- pressed -->
+</selector>
