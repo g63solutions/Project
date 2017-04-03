@@ -219,9 +219,21 @@ public class FragmentDetail extends Fragment
 
         /*Favorite Button*/
         String favoriteState = data.getString(INDEX_IS_FAVORITE);
-        if (null != favoriteState) {
+       //TODO Why doesn't this work
+        /* if (null != favoriteState) {
             mHeartButton.setSelected(true);
+        }*/
+
+        if (favoriteState == null) {
+            mHeartButton.setSelected(false);
+        }else if (favoriteState.equalsIgnoreCase("TRUE")){
+            mHeartButton.setSelected(true);
+        }else {
+            mHeartButton.setSelected(false);
         }
+
+
+
 
         String release_date = data.getString(INDEX_RELEASE_DATE);
         mReleaseDate.setText(release_date);
