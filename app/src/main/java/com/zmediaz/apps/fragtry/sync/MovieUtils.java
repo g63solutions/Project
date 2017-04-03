@@ -38,7 +38,8 @@ public class MovieUtils {
     private static final int SYNC_INTERVAL_HOURS = 3;
     /*private static final int SYNC_INTERVAL_SECONDS = (int) TimeUnit.
             HOURS.toSeconds(SYNC_INTERVAL_HOURS);*/
-    private static final int SYNC_INTERVAL_SECONDS = 30;
+    /*private static final int SYNC_INTERVAL_SECONDS = 30;*/
+    private static final int SYNC_INTERVAL_SECONDS = 3000;
 
 
     private static final int SYNC_FLEXTIME_SECONDS = SYNC_INTERVAL_SECONDS / 3;
@@ -294,7 +295,8 @@ public class MovieUtils {
                 android.os.Debug.waitForDebugger();
 
                 Uri movieQueryUri = MovieContract.MovieEntry.CONTENT_URI;
-                String[] projectionColumns = {MovieContract.MovieEntry._ID};
+                /*String[] projectionColumns = {MovieContract.MovieEntry._ID};*/
+                String[] projectionColumns = {MovieContract.MovieEntry.COLUMN_MOVIE_ID};
                 Cursor cursor = context.getContentResolver().query(
                         movieQueryUri,
                         projectionColumns,

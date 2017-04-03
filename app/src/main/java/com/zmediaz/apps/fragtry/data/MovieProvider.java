@@ -213,8 +213,13 @@ public class MovieProvider extends ContentProvider {
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }
-
+        //TODO THIS WAS COMMENTED
         cursor.setNotificationUri(getContext().getContentResolver(), uri);
+        //TODO THIS WAS ADDED
+        /*cursor.setNotificationUri(getContext().getContentResolver(), Uri.parse("content://com.zmediaz.apps.fragtry/favorites"));*/
+       /* cursor.setNotificationUri(getContext().getContentResolver(), Uri.parse("content://com.zmediaz.apps.fragtry/movie"));
+        getContext().getContentResolver().notifyChange(Uri.parse("content://com.zmediaz.apps.fragtry/movie"), null);*/
+
         return cursor;
     }
 
@@ -293,7 +298,12 @@ public class MovieProvider extends ContentProvider {
         if (numRowsDeleted != 0) {
             /*getContext().getContentResolver().notifyChange(uri, null);*/
             getContext().getContentResolver().notifyChange(Uri.parse("content://com.zmediaz.apps.fragtry/movie"), null);
+
+            /*getContext().getContentResolver().notifyChange(Uri.parse("content://com.zmediaz.apps.fragtry/movie"), null);*/
+
+
         }
+
         return numRowsDeleted;
     }
 

@@ -2,17 +2,21 @@ package com.zmediaz.apps.fragtry;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.florent37.picassopalette.PicassoPalette;
 import com.squareup.picasso.Picasso;
+import com.zmediaz.apps.fragtry.data.MovieModel;
 
 
 /**
@@ -22,7 +26,15 @@ import com.squareup.picasso.Picasso;
 public class MovieAdapter
         extends RecyclerView.Adapter<MovieAdapter.MovieAdapterViewHolder> {
 
+
+
+
+
+    MovieModel mMovieModel;
+
     private final Context mContext;
+
+    private ImageButton mHeartButton;
 
     private static final int FIRST_MOVIE = 0;
 
@@ -32,6 +44,7 @@ public class MovieAdapter
 
     public interface MovieAdapterOnClickHandler {
         void onClick(long _id);
+        void buttonClick(MovieModel movieModel, String situation);
 
     }
 
@@ -55,7 +68,24 @@ public class MovieAdapter
 
     @Override
     public void onBindViewHolder(MovieAdapterViewHolder movieAdapterViewHolder, int position) {
+        /*Log.v("Cursor Object", DatabaseUtils.dumpCursorToString(mCursor));*/
+
         mCursor.moveToPosition(position);
+
+        String favoriteState = mCursor.getString(FragmentMain.INDEX_IS_FAVORITE);
+       /* if (favoriteState != null) {
+            mHeartButton.setSelected(true);
+        }else {
+            mHeartButton.setSelected(false);
+        }*/
+
+        if (favoriteState == null) {
+            mHeartButton.setSelected(false);
+        }else if (favoriteState.equalsIgnoreCase("TRUE")){
+            mHeartButton.setSelected(true);
+        }else {
+            mHeartButton.setSelected(false);
+        }
 
         /*MOVIE SUMMARY*/
         /*String poster_path = mCursor.getString(MainActivity.INDEX_MOVIE_POSTER_PATH);*/
@@ -101,6 +131,7 @@ public class MovieAdapter
 
     void swapCursor(Cursor newCursor) {
         mCursor = newCursor;
+        Log.v("Cursor MOVIE ADAPTER", DatabaseUtils.dumpCursorToString(mCursor));
         notifyDataSetChanged();
     }
 
@@ -113,25 +144,52 @@ public class MovieAdapter
         public LinearLayout placeHolder;
         public LinearLayout placeNameHolder;
         final ImageView mPosterPath;
+        /*private ImageButton mHeartButton;*/
+
+
 
         MovieAdapterViewHolder(View view) {
             super(view);
+            mHeartButton = (ImageButton) view.findViewById(R.id.selector_favorite);
             placeNameHolder = (LinearLayout) itemView.findViewById(R.id.placeNameHolder);
             placeHolder = (LinearLayout) itemView.findViewById(R.id.mainHolder);
             mVoteAverage = (TextView) view.findViewById(R.id.vote_average);
             mPosterPath = (ImageView) view.findViewById(R.id.poster_path);
             /*mMovieTextView = (TextView) view.findViewById(R.id.tv_movie_data);*/
             view.setOnClickListener(this);
+            mHeartButton.setOnClickListener(this);
+            mPosterPath.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
 
-            movieID(view);
+
+
+            switch (view.getId()) {
+
+                case R.id.selector_favorite: {
+                    if (view.isSelected()) {
+                        mClickHandler.buttonClick(makeMovieModel(view), "deleteFavoriteButton");
+                        view.setSelected(false);
+                        break;
+                    } else {
+                        mClickHandler.buttonClick(makeMovieModel(view), "addFavoriteButton");
+                        view.setSelected(true);
+                        break;
+                    }
+                }
+                    case R.id.poster_path:{
+                        movieID(view);
+                    }
+
+            }
 
             /*String movie = mMovieTextView.getText().toString();
             mClickHandler.onClick(movie);*/
         }
+
+
 
         /*public void movieID2(Context context){
             int adapterPosition = getAdapterPosition();
@@ -161,13 +219,38 @@ public class MovieAdapter
             mClickHandler.onClick(movieID);
         }
 
+        public MovieModel makeMovieModel(View view) {
+            mMovieModel = new MovieModel();
+
+            int adapterPosition = getAdapterPosition();
+            mCursor.moveToPosition(adapterPosition);
+
+            String is_favorite = mCursor.getString(FragmentMain.INDEX_IS_FAVORITE);
+            mMovieModel.setFavorites(is_favorite);
+
+            String poster_path = mCursor.getString(FragmentMain.INDEX_MOVIE_POSTER_PATH);
+            mMovieModel.setPosterPath(poster_path);
+            String original_title = mCursor.getString(FragmentMain.INDEX_MOVIE_ORIGINAL_TITLE);
+            mMovieModel.setOriginalTitle(original_title);
+            String movie_ID = mCursor.getString(FragmentMain.INDEX_MOVIE_MOVIE_ID);
+            mMovieModel.setMovieId(movie_ID);
+            String vote_average = mCursor.getString(FragmentMain.INDEX_MOVIE_VOTE_AVERAGE);
+            mMovieModel.setVoteAverage(vote_average);
+            String backdrop_path = mCursor.getString(FragmentMain.INDEX_MOVIE_BACDROP_PATH);
+            mMovieModel.setBackdropPath(backdrop_path);
+            String movie_overview = mCursor.getString(FragmentMain.INDEX_MOVIE_OVERVIEW);
+            mMovieModel.setOverview(movie_overview);
+            String release_date = mCursor.getString(FragmentMain.INDEX_RELEASE_DATE);
+            mMovieModel.setReleaseDate(release_date);
+
+
+            return mMovieModel;
+        }
+
     }
 
-    public Cursor checkFavorite(Cursor cursorLeft){
-        Cursor cursorWithFavorite = cursorLeft;
 
-        return cursorWithFavorite;
-    }
+
 }
 
 

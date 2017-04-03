@@ -206,6 +206,21 @@ public class ActivityMain
 
 
     }
+
+    @Override
+    public void buttonClicked(MovieModel movieModel, String situation) {
+        onButtonClicked(movieModel, situation);
+    }
+
+    /*@Override
+    public void onClick(long _id) {
+
+    }*/
+
+    /*@Override
+    public void buttonClick(MovieModel movieModel, String situation) {
+onButtonClicked(movieModel, situation);
+    }*/
 }
 
  /* if (mToast != null) mToast.cancel();

@@ -1,6 +1,7 @@
 package com.zmediaz.apps.fragtry;
 
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,6 +18,7 @@ import android.widget.ProgressBar;
 
 import com.facebook.stetho.Stetho;
 import com.zmediaz.apps.fragtry.data.MovieContract;
+import com.zmediaz.apps.fragtry.data.MovieModel;
 
 /**
  * Created by Computer on 2/4/2017.
@@ -30,7 +32,12 @@ public class FragmentMain extends Fragment
 
     public interface Callback {
         void onItemSelected(Uri columnId);
+        void buttonClicked(MovieModel movieModel, String situation);
     }
+
+   /* public interface buttonClickedListener {
+        public void onButtonClicked(MovieModel movieModel, String situation);
+    }*/
 
 
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -38,17 +45,23 @@ public class FragmentMain extends Fragment
     public static final String[] MAIN_MOVIE_SCREEN = {
             MovieContract.MovieEntry.COLUMN_POSTER_PATH,
             MovieContract.MovieEntry.COLUMN_ORIGINAL_TITLE,
-            /*MovieContract.MovieEntry._ID,*/
-
             MovieContract.MovieEntry.COLUMN_MOVIE_ID,
-            MovieContract.MovieEntry.COLUMN_VOTE_AVERAGE
+            MovieContract.MovieEntry.COLUMN_VOTE_AVERAGE,
+            MovieContract.MovieEntry.COLUMN_BACKDROP_PATH,
+            MovieContract.MovieEntry.COLUMN_OVERVIEW,
+            MovieContract.MovieEntry.COLUMN_RELEASE_DATE,
+            MovieContract.FavoritesEntry.COLUMN_IS_FAVORITE
     };
 
     public static final int INDEX_MOVIE_POSTER_PATH = 0;
     public static final int INDEX_MOVIE_ORIGINAL_TITLE = 1;
-    /*public static final int INDEX_MOVIE_ID = 2;*/
     public static final int INDEX_MOVIE_MOVIE_ID = 2;
     public static final int INDEX_MOVIE_VOTE_AVERAGE = 3;
+    public static final int INDEX_MOVIE_BACDROP_PATH = 4;
+    public static final int INDEX_MOVIE_OVERVIEW = 5;
+    public static final int INDEX_RELEASE_DATE =6;
+    public static final int INDEX_IS_FAVORITE = 7;
+
 
     private static final int MOVIE_LOADER_INT = 7;
 
@@ -168,7 +181,7 @@ public class FragmentMain extends Fragment
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-
+        Log.v("Cursor FRAGMENT MAIN", DatabaseUtils.dumpCursorToString(data));
         mMovieAdapter.swapCursor(data);
         if (mPosition == RecyclerView.NO_POSITION) mPosition = 0;
         mRecyclerView.smoothScrollToPosition(mPosition);
@@ -257,7 +270,32 @@ public class FragmentMain extends Fragment
         }
     }
 
+    @Override
+    public void buttonClick(MovieModel movieModel, String situation) {
+        switch (situation) {
+            case ("addFavoriteButton"): {
+                ((Callback) getActivity()).buttonClicked(movieModel, "addFavoriteButton");
+                break;
+            }
 
+            case ("deleteFavoriteButton"): {
+                ((Callback) getActivity()).buttonClicked(movieModel, "deleteFavoriteButton");
+            }
+
+
+            /*case R.id.another_view:
+                someMethod(param);
+                break;*/
+        }
+    }
+
+    public void onClick(View v) {
+
+    }
+//TODO Fragment Main Talking to fragment detail a NO NO
+    /*public void buttonClicked(MovieModel movieModel, String situation) {
+        ((FragmentDetail.buttonClickedListener) getActivity()).onButtonClicked(movieModel, situation);
+    }*/
 }
 
 /*

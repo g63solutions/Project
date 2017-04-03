@@ -51,6 +51,7 @@ public class FragmentDetail extends Fragment
     private String mMovieSummary;
 
     public static final String[] MOVIE_DETAIL_PROJECTION = {
+            MovieContract.FavoritesEntry.COLUMN_IS_FAVORITE,
             MovieContract.MovieEntry.COLUMN_POSTER_PATH,
             MovieContract.MovieEntry.COLUMN_OVERVIEW,
             MovieContract.MovieEntry.COLUMN_RELEASE_DATE,
@@ -58,17 +59,17 @@ public class FragmentDetail extends Fragment
             MovieContract.MovieEntry.COLUMN_ORIGINAL_TITLE,
             MovieContract.MovieEntry.COLUMN_BACKDROP_PATH,
             MovieContract.MovieEntry.COLUMN_VOTE_AVERAGE,
-            MovieContract.FavoritesEntry.COLUMN_IS_FAVORITE
-    };
 
-    public static final int INDEX_POSTER_PATH = 0;
-    public static final int INDEX_OVERVIEW = 1;
-    public static final int INDEX_RELEASE_DATE = 2;
-    public static final int INDEX_MOVIE_ID = 3;
-    public static final int INDEX_ORIGINAL_TITLE = 4;
-    public static final int INDEX_BACKDROP_PATH = 5;
-    public static final int INDEX_VOTE_AVERAGE = 6;
-    public static final int INDEX_IS_FAVORITE = 7;
+    };
+    public static final int INDEX_IS_FAVORITE = 0;
+    public static final int INDEX_POSTER_PATH = 1;
+    public static final int INDEX_OVERVIEW = 2;
+    public static final int INDEX_RELEASE_DATE = 3;
+    public static final int INDEX_MOVIE_ID = 4;
+    public static final int INDEX_ORIGINAL_TITLE = 5;
+    public static final int INDEX_BACKDROP_PATH = 6;
+    public static final int INDEX_VOTE_AVERAGE = 7;
+
 
     private View rootView;
 

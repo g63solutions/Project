@@ -15,7 +15,7 @@ public class MovieModel implements Serializable {
     private String originalTitle;
     private String backdropPath;
     private String voteAverage;
-    private Boolean favorites;
+    private String favorites;
 
     public String getPosterPath() {
         return posterPath;
@@ -73,11 +73,11 @@ public class MovieModel implements Serializable {
         this.voteAverage = voteAverage;
     }
 
-    public Boolean getFavorites() {
+    public String getFavorites() {
         return favorites;
     }
 
-    public void setFavorites(Boolean favorites) {
+    public void setFavorites(String favorites) {
         this.favorites = favorites;
     }
 
